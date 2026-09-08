@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // ─── TIER 1: Googlebot & Global Search Engine Crawlers — Full Unrestricted Access ───
+      // ─── TIER 1: Googlebot & Official Google Ecosystem Crawlers — 100% Unrestricted Access ───
       {
         userAgent: 'Googlebot',
         allow: '/',
@@ -14,6 +14,11 @@ export default function robots(): MetadataRoute.Robots {
           '/campaign/',
           '/*?preview=*',
         ],
+      },
+      {
+        userAgent: 'Google-InspectionTool', // Google Search Console Live URL Testing & Rendering
+        allow: '/',
+        disallow: [],
       },
       {
         userAgent: 'Googlebot-Image',
@@ -43,6 +48,28 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'AdsBot-Google-Mobile',
         allow: ['/campaign/', '/'],
         disallow: ['/admin/', '/portal/', '/api/'],
+      },
+      {
+        userAgent: 'Storebot-Google',
+        allow: '/',
+        disallow: ['/admin/', '/portal/', '/api/'],
+      },
+      {
+        userAgent: 'FeedFetcher-Google',
+        allow: '/',
+      },
+      {
+        userAgent: 'Mediapartners-Google',
+        allow: '/',
+      },
+      {
+        userAgent: 'GoogleOther',
+        allow: '/',
+        disallow: ['/admin/', '/portal/', '/api/'],
+      },
+      {
+        userAgent: 'Google-Extended', // Google Gemini & Vertex AI Grounding
+        allow: '/',
       },
       {
         userAgent: 'Bingbot',
@@ -92,7 +119,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'anthropic-ai',    disallow: '/' },
       { userAgent: 'ClaudeBot',       disallow: '/' },
       { userAgent: 'Claude-Web',      disallow: '/' },
-      { userAgent: 'Google-Extended', allow: '/' },
       { userAgent: 'cohere-ai',       disallow: '/' },
       { userAgent: 'CCBot',           disallow: '/' },
       { userAgent: 'Diffbot',         disallow: '/' },

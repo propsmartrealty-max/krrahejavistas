@@ -11,16 +11,23 @@ const MAX_POST_REQUESTS = 5;
 
 // Whitelisted search engine and SSL verification bots (NEVER block these)
 const ALLOWED_BOT_SUBSTRINGS = [
+  'google', // Whitelist ALL official Googlebot and Google services unconditionally
   'googlebot',
+  'google-inspectiontool',
+  'google-extended',
+  'adsbot-google',
+  'mediapartners-google',
+  'feedfetcher-google',
+  'storebot-google',
+  'googleother',
+  'googleproducer',
+  'apis-google',
   'bingbot',
   'applebot',
   'slurp',
   'duckduckbot',
   'yandex',
   'baiduspider',
-  'adsbot-google',
-  'mediapartners-google',
-  'apis-google',
   'let\'s encrypt',
   'acme-challenge',
   'certbot',

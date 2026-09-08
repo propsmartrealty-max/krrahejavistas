@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import { Metadata } from 'next';
 import Hero from '@/components/home/Hero';
 import ProjectHighlights from '@/components/home/ProjectHighlights';
@@ -62,18 +61,8 @@ export const metadata: Metadata = {
 
 export const revalidate = 86400; // 24 hours ISR edge cache
 
-export default async function Home() {
-  const headersList = await headers();
-  const city = headersList.get('x-user-city') || 'Unknown';
-  
-  // Edge Personalization Logic
-  let headline = "A 7.5-acre masterpiece at Baner Annex. Discover ultra-premium deck residences designed for those who command the extraordinary.";
-  
-  if (city.toLowerCase() === 'mumbai') {
-    headline = "Mumbai's smartest investment: A 7.5-acre masterpiece at Baner Annex. Secure elite capital appreciation with ultra-premium deck residences.";
-  } else if (city.toLowerCase() === 'pune') {
-    headline = "Upgrade your Pune lifestyle: A 7.5-acre masterpiece at Baner Annex. Discover ultra-premium deck residences right next to the IT hub.";
-  }
+export default function Home() {
+  const headline = "A 7.5-acre masterpiece at Baner Annex. Discover ultra-premium deck residences designed for those who command the extraordinary.";
 
   return (
     <>

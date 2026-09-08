@@ -50,7 +50,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/nri/best-nri-investment-pune-singapore',          0.9, 'weekly'),
     entry('/nri/pune-real-estate-investment-for-nri-usa',     0.9, 'weekly'),
 
-    // ─── TIER 4 (priority 0.85): Comparison & Decision Matrix ───
+    // ─── TIER 4 (priority 0.85): Comparison & Decision Matrix (High-Conversion Editorial) ───
+    entry('/compare/k-raheja-vistas-vs-godrej-hillside-mahalunge', 0.85, 'weekly'),
+    entry('/compare/k-raheja-vistas-vs-rohan-harita-baner',        0.85, 'weekly'),
+    entry('/compare/k-raheja-vistas-vs-kolte-patil-baner',         0.85, 'weekly'),
+    entry('/compare/best-luxury-projects-near-hinjewadi',          0.85, 'weekly'),
 
     // ─── TIER 5 (priority 0.8): Authority & Market Intelligence ───
     entry('/stories',   0.8, 'weekly'),
@@ -58,9 +62,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/insights',  0.8, 'weekly'),
 
     // ─── TIER 6 (priority 0.75): Localized Languages ───
-    entry('/localized/en',    0.75, 'monthly'),
-    entry('/localized/mr',    0.75, 'monthly'),
-    entry('/localized/hi',    0.75, 'monthly'),
+    entry('/localized/en/landing',    0.75, 'monthly'),
+    entry('/localized/mr/landing',    0.75, 'monthly'),
+    entry('/localized/hi/landing',    0.75, 'monthly'),
 
     // ─── Note: 54,608 programmatic SEO matrix pages are served ───
     // ─── via the static sitemap index at /sitemap-index.xml (110 sub-sitemaps) ───

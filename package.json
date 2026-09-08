@@ -10,7 +10,7 @@
     "lint": "eslint",
     "test:seo": "node scripts/verify-seo-rank-1.mjs",
     "dev:vinext": "vinext dev --port 3001",
-    "build:vinext": "vinext build",
+    "build:vinext": "next build && vinext build && node scripts/sync-pages-dist.cjs",
     "start:vinext": "wrangler dev --config dist/server/wrangler.json",
     "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json"
   },
