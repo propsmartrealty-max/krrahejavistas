@@ -48,4 +48,20 @@ function copyHtmlFiles(dir, relative = '') {
 
 console.log('🔄 Syncing Next.js prerendered HTML into Cloudflare Pages dist/client...');
 copyHtmlFiles(srcDir);
-console.log('✅ Prerendered HTML synchronized into dist/client.');
+
+// Sync sitemap.xml and robots.txt
+const sitemapBody = path.join(srcDir, 'sitemap.xml.body');
+if (fs.existsSync(sitemapBody)) {
+  fs.copyFileSync(sitemapBody, path.join(destDir, 'sitemap.xml'));
+  fs.copyFileSync(sitemapBody, path.join(__dirname, '../public/sitemap.xml'));
+  console.log('✅ sitemap.xml synchronized to dist/client & public.');
+}
+
+const robotsBody = path.join(srcDir, 'robots.txt.body');
+if (fs.existsSync(robotsBody)) {
+  fs.copyFileSync(robotsBody, path.join(destDir, 'robots.txt'));
+  fs.copyFileSync(robotsBody, path.join(__dirname, '../public/robots.txt'));
+  console.log('✅ robots.txt synchronized to dist/client & public.');
+}
+
+console.log('✅ Prerendered HTML & SEO files fully synchronized.');

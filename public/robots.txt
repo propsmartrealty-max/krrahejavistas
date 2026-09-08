@@ -1,0 +1,194 @@
+User-Agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
+Disallow: /*?preview=*
+
+User-Agent: Google-InspectionTool
+Allow: /
+
+User-Agent: Googlebot-Image
+Allow: /
+Allow: /assets/
+Allow: /public/
+Allow: /_next/image
+Disallow: /admin/
+Disallow: /portal/
+
+User-Agent: Googlebot-Video
+Allow: /
+Allow: /assets/video.mp4
+Allow: /assets/video-thumb.jpg
+
+User-Agent: Googlebot-News
+Allow: /
+Allow: /insights
+Allow: /stories
+Allow: /updates
+Disallow: /admin/
+Disallow: /portal/
+
+User-Agent: AdsBot-Google
+Allow: /campaign/
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+
+User-Agent: AdsBot-Google-Mobile
+Allow: /campaign/
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+
+User-Agent: Storebot-Google
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+
+User-Agent: FeedFetcher-Google
+Allow: /
+
+User-Agent: Mediapartners-Google
+Allow: /
+
+User-Agent: GoogleOther
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+
+User-Agent: Google-Extended
+Allow: /
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+Crawl-delay: 1
+
+User-Agent: Applebot
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+
+User-Agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+
+User-Agent: Yandex
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
+Crawl-delay: 2
+
+User-Agent: DuckDuckBot
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
+
+User-Agent: Slurp
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
+Crawl-delay: 3
+
+User-Agent: GPTBot
+Disallow: /
+
+User-Agent: ChatGPT-User
+Disallow: /
+
+User-Agent: anthropic-ai
+Disallow: /
+
+User-Agent: ClaudeBot
+Disallow: /
+
+User-Agent: Claude-Web
+Disallow: /
+
+User-Agent: cohere-ai
+Disallow: /
+
+User-Agent: CCBot
+Disallow: /
+
+User-Agent: Diffbot
+Disallow: /
+
+User-Agent: Bytespider
+Disallow: /
+
+User-Agent: Omgili
+Disallow: /
+
+User-Agent: AhrefsBot
+Disallow: /
+
+User-Agent: SemrushBot
+Disallow: /
+
+User-Agent: MJ12bot
+Disallow: /
+
+User-Agent: DotBot
+Disallow: /
+
+User-Agent: PetalBot
+Disallow: /
+
+User-Agent: BLEXBot
+Disallow: /
+
+User-Agent: RogerBot
+Disallow: /
+
+User-Agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
+Disallow: /private/
+Disallow: /_next/webpack-hmr
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+Disallow: /*?msclkid=*
+Disallow: /*?ref=*
+Disallow: /*?sort=*
+Disallow: /*?filter=*
+Disallow: /*?search=*
+Disallow: /*?q=*
+Disallow: /*&*
+Disallow: /*.json
+Disallow: /*.map
+Disallow: /.env
+Disallow: /.git/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
+Disallow: /phpmyadmin/
+Crawl-delay: 2
+
+Sitemap: https://www.krahejacorpvistas.com/sitemap.xml
+Sitemap: https://www.krahejacorpvistas.com/sitemap-index.xml
