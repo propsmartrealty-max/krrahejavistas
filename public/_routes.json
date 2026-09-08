@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/_next/*",
+    "/assets/*",
+    "/favicon.ico",
+    "/icon.png",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/sitemap-index.xml",
+    "/sitemaps/*",
+    "/manifest.json",
+    "/default-indexnow-key.txt",
+    "/llms.txt",
+    "/llms-full.txt",
+    "/file.svg",
+    "/globe.svg",
+    "/next.svg",
+    "/vercel.svg",
+    "/window.svg"
+  ]
+}

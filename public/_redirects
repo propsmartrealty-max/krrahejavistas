@@ -1,0 +1,22 @@
+# Cloudflare Pages Native Edge Redirects Matrix - K Raheja Vistas Mahalunge
+# Enforce canonical clean URLs and legacy route mappings
+
+/index.html   /   301
+/home         /   301
+/index        /   301
+
+# Clean 404 legacy comparisons and calculators
+/compare                /   301
+/investment-calculator  /   301
+
+# Trailing slash sanitization on primary silos
+/project/masterplan/    /project/masterplan    301
+/project/floorplans/    /project/floorplans    301
+/project/amenities/     /project/amenities     301
+/project/location/      /project/location      301
+/project/gallery/       /project/gallery       301
+/neighborhood/          /neighborhood          301
+/directory/             /directory             301
+/insights/              /insights              301
+/stories/               /stories               301
+/updates/               /updates               301

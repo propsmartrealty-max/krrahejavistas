@@ -1,0 +1,20 @@
+name = "kraheja-seo-worker"
+main = "seo-worker.js"
+compatibility_date = "2026-09-08"
+compatibility_flags = ["nodejs_compat"]
+
+# Custom Domain Route Bindings for krahejacorpvistas.com
+routes = [
+  { pattern = "krahejacorpvistas.com/*", zone_name = "krahejacorpvistas.com", custom_domain = true },
+  { pattern = "www.krahejacorpvistas.com/*", zone_name = "krahejacorpvistas.com" }
+]
+
+[vars]
+ENVIRONMENT = "production"
+CANONICAL_DOMAIN = "www.krahejacorpvistas.com"
+APEX_DOMAIN = "krahejacorpvistas.com"
+ORIGIN_HOST = "krahejacorpvistas.pages.dev"
+INDEXNOW_KEY = "default-indexnow-key"
+GSC_VERIFICATION_TOKEN = "U4zCae0__dM1wPXQMTDzwTTofHld4Y0kkiJqZ0uOC1c"
+MAHARERA_NUMBER = "PR1260002501530"
+SALES_PHONE = "+91-7744009295"

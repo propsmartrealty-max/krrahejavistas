@@ -1,0 +1,78 @@
+/*
+  # Cloudflare Advanced Edge Security & Compliance Headers
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self), interest-cohort=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Cross-Origin-Resource-Policy: cross-origin
+  
+  # Content Security Policy
+  Content-Security-Policy: default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data: blob: https://images.unsplash.com https://maharera.mahaonline.gov.in https://krahejacorpvistas.com https://www.krahejacorpvistas.com; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: https://challenges.cloudflare.com https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.google-analytics.com; frame-src 'self' https: https://www.youtube.com https://youtube.com https://www.google.com https://maps.google.com https://challenges.cloudflare.com; connect-src 'self' https: https://www.google-analytics.com https://analytics.google.com;
+  
+  # Cloudflare Client Hints & Browser Capabilities
+  Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-Width, DPR, Viewport-Width
+  
+  # CORS & Edge Telemetry
+  Access-Control-Allow-Origin: *
+  Timing-Allow-Origin: *
+  
+  # Early Hints (HTTP 103)
+  Link: <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin
+
+# Static Compiled Bundles - 1 Year Immutable Edge & Browser Caching
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+  CDN-Cache-Control: max-age=31536000
+  Access-Control-Allow-Origin: *
+
+# High-Resolution Real Estate Project Assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+  CDN-Cache-Control: max-age=31536000
+  Access-Control-Allow-Origin: *
+
+# Multi-Tier Dynamic Sitemaps Matrix
+/sitemaps/*
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+  Access-Control-Allow-Origin: *
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+
+/sitemap-index.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+
+# Crawlers, LLMs & Search Discovery
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+  CDN-Cache-Control: max-age=86400
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+  CDN-Cache-Control: max-age=86400
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+  CDN-Cache-Control: max-age=86400
+
+/default-indexnow-key.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+  CDN-Cache-Control: max-age=86400
+
+# HTML Caching Policy (Sub-15ms Edge Cache with Instant Revalidation on Deploy)
+/
+  Cache-Control: public, max-age=0, must-revalidate
+  CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400
