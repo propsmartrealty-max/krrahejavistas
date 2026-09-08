@@ -49,7 +49,7 @@ model Payment {
   amount        Float
   status        String    // e.g., "PAID", "PENDING"
   milestone     String    // e.g., "Plinth", "14th Slab"
-  receiptUrl    String?   // S3 or Vercel Blob URL
+  receiptUrl    String?   // S3 or Cloudflare R2 Storage URL
   
   customerId    String
   customer      Customer  @relation(fields: [customerId], references: [id])

@@ -31,7 +31,7 @@ const ALLOWED_BOT_SUBSTRINGS = [
   'let\'s encrypt',
   'acme-challenge',
   'certbot',
-  'vercel',
+  'cloudflare',
   'perplexity',
   'chatgpt',
   'claude',
@@ -91,13 +91,16 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // Edge Personalization (Phase 8.3)
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
-  const city = request.headers.get('cf-ipcity') || request.headers.get('x-vercel-ip-city') || 'Unknown';
-  const country = request.headers.get('cf-ipcountry') || request.headers.get('x-vercel-ip-country') || 'Unknown';
+  // Cloudflare Edge Personalization
+  const ip = request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
+  const city = request.headers.get('cf-ipcity') || 'Unknown';
+  const country = request.headers.get('cf-ipcountry') || 'IN';
+  const colo = request.headers.get('cf-ray')?.split('-')[1] || 'BOM';
   const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-user-ip', ip);
   requestHeaders.set('x-user-city', city);
   requestHeaders.set('x-user-country', country);
+  requestHeaders.set('x-user-colo', colo);
 
   // --- RATE LIMITING (POST requests only) ---
   let rateLimitRemaining = MAX_POST_REQUESTS;
