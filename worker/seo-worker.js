@@ -10,6 +10,7 @@
  * Upstream Pages Origin: https://krahejacorpvistas.pages.dev
  * Developer: K Raheja Corp Homes & Propsmart Realty
  * MahaRERA: PR1260002501530
+ * Verified Sales Desk: +91-7744009295
  * ============================================================================
  */
 
@@ -43,6 +44,7 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const userAgent = request.headers.get("user-agent") || "";
+    const acceptHeader = request.headers.get("accept") || "";
     const country = request.headers.get("cf-ipcountry") || "IN";
     const city = request.cf?.city || "Pune";
     const colo = request.cf?.colo || "BOM";
@@ -69,35 +71,122 @@ export default {
     const isBingbot = /bingbot|bingpreview|msnbot/i.test(userAgent);
     const isSearchSpider = isGooglebot || isBingbot || /yandex|baiduspider|applebot|duckduckbot|sogou/i.test(userAgent);
     const isAiCrawler = /gptbot|chatgpt-user|perplexitybot|claudebot|anthropic-ai|bytespider|cohere-ai|amazonbot|diffbot|google-extended/i.test(userAgent);
+    const wantsMarkdown = acceptHeader.includes("text/markdown") || url.searchParams.get("format") === "markdown";
 
     // ------------------------------------------------------------------------
     // 3. NRI & MULTI-CURRENCY DETECTION MATRIX
     // ------------------------------------------------------------------------
     let currencyCode = "INR";
     let currencySymbol = "₹";
+    let currencyRate = 1.0;
 
     if (["US", "CA"].includes(country)) {
       currencyCode = "USD";
       currencySymbol = "$";
+      currencyRate = 0.012;
     } else if (["AE", "SA", "QA", "KW", "OM"].includes(country)) {
       currencyCode = "AED";
       currencySymbol = "AED ";
+      currencyRate = 0.044;
     } else if (["GB"].includes(country)) {
       currencyCode = "GBP";
       currencySymbol = "£";
+      currencyRate = 0.0095;
     } else if (["SG", "AU", "NZ"].includes(country)) {
       currencyCode = "SGD";
       currencySymbol = "S$";
+      currencyRate = 0.016;
     } else if (["DE", "FR", "IT", "ES", "NL", "IE"].includes(country)) {
       currencyCode = "EUR";
       currencySymbol = "€";
+      currencyRate = 0.011;
     }
 
     // ------------------------------------------------------------------------
     // 4. SPECIAL EDGE SEO ENDPOINTS
     // ------------------------------------------------------------------------
 
-    // A. Health Check
+    // A. Dynamic Robots.txt
+    if (url.pathname === "/robots.txt") {
+      const robotsTxt = `# K Raheja Vistas Mahalunge - Cloudflare SEO Worker
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /assets/
+Allow: /_next/image
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /insights
+Allow: /stories
+Allow: /updates
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+
+Sitemap: https://${CANONICAL_HOST}/sitemap.xml
+Sitemap: https://${CANONICAL_HOST}/sitemap-index.xml
+`;
+      return new Response(robotsTxt, {
+        status: 200,
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Cache-Control": "public, max-age=86400, s-maxage=86400",
+          "X-Robots-Tag": "noindex"
+        }
+      });
+    }
+
+    // B. IndexNow Verification Key Route
+    if (url.pathname === `/${INDEXNOW_KEY}.txt` || url.pathname === "/default-indexnow-key.txt") {
+      return new Response(INDEXNOW_KEY, {
+        status: 200,
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Cache-Control": "public, max-age=86400, s-maxage=86400",
+          "Access-Control-Allow-Origin": "*"
+        }
+      });
+    }
+
+    // C. Health Check Endpoint
     if (url.pathname === "/api/health") {
       return new Response(JSON.stringify({
         status: "healthy",
@@ -114,7 +203,7 @@ export default {
       });
     }
 
-    // B. Real-Time IndexNow Broadcast Endpoint
+    // D. Real-Time IndexNow Broadcast Endpoint
     if (url.pathname === "/api/indexnow" && request.method === "POST") {
       try {
         const indexNowPayload = {
@@ -151,6 +240,54 @@ export default {
       }), {
         status: 200,
         headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+      });
+    }
+
+    // E. Generative Engine Optimization (GEO): Markdown Streaming for AI Agents
+    if (wantsMarkdown && !url.pathname.startsWith("/api") && !url.pathname.includes(".")) {
+      const markdownDossier = `# K Raheja Vistas Mahalunge — Master Project & Investment Dossier
+**Location:** Mahalunge, Baner Annexe, Pune, Maharashtra 411045 (Adjacent to Hinjewadi IT Park Phase 1 & Balewadi Stadium)
+**Developer:** K Raheja Corp Homes (Over 4 Decades of Real Estate Excellence)
+**Land Parcel:** 7.5 Acres of Integrated Luxury Living with Private Decks
+**Project Status:** Active New Launch & Under Construction | MahaRERA Verified
+
+## Official MahaRERA Registration & Compliance
+- **MahaRERA Registration Number:** \`${MAHARERA_NUMBER}\`
+- **MahaRERA Official Portal:** https://maharera.mahaonline.gov.in
+- **Legal Approvals:** Environmental Clearance, PMC Building Sanction, Commencement Certificate (CC) Approved
+
+## Verified Configurations, Carpet Areas & Pricing (2026 Live Inventory)
+- **2 BHK Luxury Deck Residence:** 780 – 850 sq.ft Carpet | Starting ₹88 Lakhs* All-Inclusive
+- **3 BHK Premium Deck Residence:** 1,050 – 1,220 sq.ft Carpet | Starting ₹1.28 Cr* All-Inclusive
+- **3.5 BHK Imperial Deck Residence:** 1,350 – 1,480 sq.ft Carpet | Starting ₹1.65 Cr* All-Inclusive
+- **4 BHK Presidential Penthouse / Deck Suite:** 1,750 – 2,100 sq.ft Carpet | Starting ₹2.10 Cr* All-Inclusive
+
+## Strategic Micro-Market & Commute Radars
+- **Hinjewadi IT Park Phase 1 (Wipro, Infosys, TCS):** 5 Mins (3.2 km) via Mahalunge-Hinjewadi Bridge
+- **Balewadi High Street & Commercial Hub:** 7 Mins (4.5 km)
+- **Baner-Pashan Link Road & West Pune Hub:** 10 Mins (5.8 km)
+- **Mumbai-Pune Expressway & NH-48:** Direct 3-Minute Signal-Free Access
+- **Proposed Pune Metro Line 3 (Hinjewadi to Shivajinagar):** Station within 2.5 km
+
+## Landmark Lifestyle Amenities
+- **Grand 35,000 sq.ft Clubhouse:** World-class fitness center, spa, indoor sports courts, and private cinema
+- **Olympic-Length Infinity Pool:** Temperature-regulated with poolside cabanas and kids' splash zone
+- **Biophilic Private Decks:** Extra-wide balconies offering panoramic views of the Baner hills and river
+- **Multi-Tier Security:** 24/7 RFID vehicle access, biometric tower entry, and AI-assisted surveillance
+
+## Direct Sales Office & Verification
+- **Verified Sales Desk:** ${SALES_PHONE}
+- **Official Web Portal:** https://${CANONICAL_HOST}${url.pathname}
+`;
+      return new Response(markdownDossier, {
+        status: 200,
+        headers: {
+          "Content-Type": "text/markdown; charset=utf-8",
+          "X-Robots-Tag": "index, follow, max-snippet:-1",
+          "X-GEO-Engine": "Raheja-Edge-Markdown-1.0",
+          "Cache-Control": "public, max-age=3600, s-maxage=86400",
+          "Access-Control-Allow-Origin": "*"
+        }
       });
     }
 
@@ -225,6 +362,25 @@ export default {
 
               // High-Priority Hero Preload for LCP
               el.append(`    <link rel="preload" as="image" href="https://${CANONICAL_HOST}/assets/hero-masterpiece.jpg" fetchpriority="high" />\n`, { html: true });
+
+              // Dynamic GovernmentPermit Schema Injection for MahaRERA Compliance
+              el.append(`\n    <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "GovernmentPermit",
+                "name": "MahaRERA Registration - K Raheja Vistas Mahalunge",
+                "permitNumber": "${MAHARERA_NUMBER}",
+                "issuedBy": {
+                  "@type": "GovernmentOrganization",
+                  "name": "Maharashtra Real Estate Regulatory Authority",
+                  "url": "https://maharera.mahaonline.gov.in"
+                },
+                "validIn": {
+                  "@type": "AdministrativeArea",
+                  "name": "Mahalunge, Baner Annexe, Pune, Maharashtra"
+                }
+              }
+              </script>\n`, { html: true });
             }
           })
 
@@ -265,6 +421,8 @@ export default {
               const id = el.getAttribute("id") || "";
               if (id) {
                 el.setAttribute("data-seo-section", id);
+                if (id === "overview") el.setAttribute("itemprop", "description");
+                if (id === "amenities") el.setAttribute("itemprop", "amenityFeature");
               }
             }
           });

@@ -5,7 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 
 # Custom Domain Route Bindings for krahejacorpvistas.com
 routes = [
-  { pattern = "krahejacorpvistas.com/*", zone_name = "krahejacorpvistas.com", custom_domain = true },
+  { pattern = "krahejacorpvistas.com", zone_name = "krahejacorpvistas.com", custom_domain = true },
   { pattern = "www.krahejacorpvistas.com/*", zone_name = "krahejacorpvistas.com" }
 ]
 
