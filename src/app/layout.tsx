@@ -103,13 +103,7 @@ export const metadata: Metadata = {
     images: ["/assets/banner.jpg"],
   },
   verification: {
-    google: "U4zCae0__dM1wPXQMTDzwTTofHld4Y0kkiJqZ0uOC1c",
-    yandex: "yandex-verification-token",
-    yahoo: "yahoo-verification-token",
-    other: {
-      'msvalidate.01': 'BING_VERIFICATION_TOKEN',
-      'baidu-site-verification': 'BAIDU_TOKEN',
-    }
+    google: "U4zCae0__dM1wPXQMTDzwTTofHld4Y0kkiJqZ0uOC1c"
   },
   robots: {
     index: true,

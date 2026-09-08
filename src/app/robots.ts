@@ -92,7 +92,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'anthropic-ai',    disallow: '/' },
       { userAgent: 'ClaudeBot',       disallow: '/' },
       { userAgent: 'Claude-Web',      disallow: '/' },
-      { userAgent: 'Google-Extended', disallow: '/' },
+      { userAgent: 'Google-Extended', allow: '/' },
       { userAgent: 'cohere-ai',       disallow: '/' },
       { userAgent: 'CCBot',           disallow: '/' },
       { userAgent: 'Diffbot',         disallow: '/' },
@@ -121,8 +121,6 @@ export default function robots(): MetadataRoute.Robots {
           '/private/',
 
           // Next.js internals
-          '/_next/static/',
-          '/_next/image',
           '/_next/webpack-hmr',
 
           // Query parameters causing duplicate content
@@ -133,16 +131,13 @@ export default function robots(): MetadataRoute.Robots {
           '/*?ref=*',
           '/*?sort=*',
           '/*?filter=*',
-          '/*?page=*',
           '/*?search=*',
           '/*?q=*',
           '/*&*',
 
           // Raw data files
           '/*.json',
-          '/*.xml$',
           '/*.map',
-          '/*.txt$',
 
           // Security paths (defense in depth)
           '/.env',

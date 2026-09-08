@@ -18,12 +18,13 @@ function entry(
     alternates: {
       languages: {
         'en-IN': `${BASE_URL}${path}`,
-        'en': `${BASE_URL}${path}`,
-        'en-US': `${BASE_URL}/nri/pune-real-estate-investment-for-nri-usa`,
-        'en-AE': `${BASE_URL}/nri/invest-in-pune-real-estate-from-dubai`,
-        'en-GB': `${BASE_URL}/nri/luxury-homes-pune-for-nri-uk`,
-        'en-SG': `${BASE_URL}/nri/best-nri-investment-pune-singapore`,
         'x-default': `${BASE_URL}${path}`,
+        ...(path === '' ? {
+          'en-US': `${BASE_URL}/nri/pune-real-estate-investment-for-nri-usa`,
+          'en-AE': `${BASE_URL}/nri/invest-in-pune-real-estate-from-dubai`,
+          'en-GB': `${BASE_URL}/nri/luxury-homes-pune-for-nri-uk`,
+          'en-SG': `${BASE_URL}/nri/best-nri-investment-pune-singapore`,
+        } : {})
       },
     },
   };
@@ -50,9 +51,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/nri/pune-real-estate-investment-for-nri-usa',     0.9, 'weekly'),
 
     // ─── TIER 4 (priority 0.85): Comparison & Decision Matrix ───
-    entry('/compare',                                          0.85, 'weekly'),
-    entry('/compare/k-raheja-vistas-vs-godrej-hillside-pune', 0.85, 'weekly'),
-    entry('/investment-calculator',                            0.85, 'weekly'),
 
     // ─── TIER 5 (priority 0.8): Authority & Market Intelligence ───
     entry('/stories',   0.8, 'weekly'),

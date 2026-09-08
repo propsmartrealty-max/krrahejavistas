@@ -42,7 +42,10 @@ export function middleware(request: NextRequest) {
     pathname.includes('/sitemaps/') ||
     pathname === '/default-indexnow-key.txt' ||
     pathname === '/llms.txt' ||
-    pathname.startsWith('/llms.txt')
+    pathname.startsWith('/llms.txt') ||
+    pathname === '/sitemap-index.xml' ||
+    pathname.startsWith('/llms-full.txt') ||
+    pathname === '/manifest.json'
   ) {
     return NextResponse.next();
   }
@@ -63,7 +66,7 @@ export function middleware(request: NextRequest) {
       'ahrefsbot', 'semrushbot', 'mj12bot', 'dotbot', 'petalbot',
       'megaindex', 'blexbot', 'screaming frog', 'seokicks',
       'majestic', 'rogerbot', 'exabot', 'gigabot', 'scrapy',
-      'ia_archiver', 'facebookexternalhit',
+      'ia_archiver', 
       // AI Dataset Harvesters (unauthorized training scrapers)
       'ccbot', 'commoncrawl', 'diffbot', 'bytespider', 'omgili'
     ];
@@ -83,8 +86,8 @@ export function middleware(request: NextRequest) {
 
   // Edge Personalization (Phase 8.3)
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
-  const city = request.headers.get('x-vercel-ip-city') || request.headers.get('cf-ipcity') || 'Unknown';
-  const country = request.headers.get('x-vercel-ip-country') || request.headers.get('cf-ipcountry') || 'Unknown';
+  const city = request.headers.get('cf-ipcity') || request.headers.get('x-vercel-ip-city') || 'Unknown';
+  const country = request.headers.get('cf-ipcountry') || request.headers.get('x-vercel-ip-country') || 'Unknown';
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-user-city', city);
   requestHeaders.set('x-user-country', country);
@@ -131,9 +134,8 @@ export function middleware(request: NextRequest) {
     },
   });
 
-  // Block AI Crawlers (LLMs) from stealing proprietary SEO content
-  response.headers.set('X-Robots-Tag', 'noai, noimageai');
-  
+
+
   // Rate-limit signaling for POST endpoints
   if (request.method === 'POST') {
     response.headers.set('X-RateLimit-Limit', String(MAX_POST_REQUESTS));
@@ -146,6 +148,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   // Run middleware on application routes, strictly excluding static assets, ACME challenges, and sitemaps
   matcher: [
-    '/((?!api|_next/static|_next/image|assets|favicon.ico|\\.well-known|robots\\.txt|sitemap\\.xml|sitemaps|default-indexnow-key\\.txt|llms\\.txt).*)',
+    '/((?!api|_next/static|_next/image|_next/data|assets|favicon.ico|\\.well-known|robots\\.txt|sitemap\\.xml|sitemap-index\\.xml|sitemaps|default-indexnow-key\\.txt|llms\\.txt|llms-full\\.txt|manifest\\.json).*)',
   ],
 };

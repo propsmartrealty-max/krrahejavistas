@@ -65,19 +65,6 @@ export default function AeoFaqBlock({ keyword }: { keyword: string }) {
     ...VOICE_FAQS
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
   // SpeakableSpecification — tells Google Assistant which content to read aloud
   const speakableSchema = {
     "@context": "https://schema.org",
@@ -90,7 +77,6 @@ export default function AeoFaqBlock({ keyword }: { keyword: string }) {
 
   return (
     <div className="mt-24 max-w-4xl mx-auto border-t border-white/10 pt-16">
-      <Script id="faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="speakable-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
 
       <h3 className="text-3xl font-serif text-[var(--color-luxury-gold)] mb-2">Frequently Asked Questions</h3>

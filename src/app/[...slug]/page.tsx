@@ -29,6 +29,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: data.title,
     description: data.description,
+    robots: (data.content === null || data.content === undefined) ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: `https://www.krahejacorpvistas.com/${slugKey}`,
     },
@@ -232,14 +233,6 @@ export default async function ProgrammaticLandingPage(props: Props) {
                       "name": "K Raheja Corp",
                       "image": "https://www.krahejacorpvistas.com/assets/logo.png"
                     }
-                  },
-                  "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "4.8",
-                    "bestRating": "5",
-                    "worstRating": "1",
-                    "ratingCount": "312",
-                    "reviewCount": "312"
                   }
                 })
               }}
@@ -258,14 +251,6 @@ export default async function ProgrammaticLandingPage(props: Props) {
                     "description": data.description,
                     "image": "https://www.krahejacorpvistas.com/assets/actual_3bhk_floorplan.jpg",
                     "brand": { "@type": "Brand", "name": "K Raheja Corp" },
-                    "aggregateRating": {
-                      "@type": "AggregateRating",
-                      "ratingValue": "4.8",
-                      "bestRating": "5",
-                      "worstRating": "1",
-                      "ratingCount": "312",
-                      "reviewCount": "312"
-                    },
                     "offers": {
                       "@type": "Offer",
                       "price": "11000000",
@@ -429,35 +414,6 @@ export default async function ProgrammaticLandingPage(props: Props) {
 
         {/* AI Search Optimization (AEO/GEO) Block */}
         {!isArticle && <AeoFaqBlock keyword={data.h1} />}
-        
-        {/* 5-STAR SERP HIJACKING: Verified Reviews Component */}
-        <div className="mt-16 mb-16 max-w-4xl mx-auto bg-white/5 border border-[var(--color-luxury-gold)]/20 rounded-xl p-8 backdrop-blur-sm">
-          <div className="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
-            <h3 className="text-2xl font-serif text-[var(--color-luxury-pearl)]">Verified Buyer Reviews</h3>
-            <div className="flex items-center gap-2">
-              <span className="text-[var(--color-luxury-gold)] text-xl">★★★★★</span>
-              <span className="text-white/80 font-medium">4.8/5 (312 Reviews)</span>
-            </div>
-          </div>
-          <div className="space-y-6">
-            <div className="border-l-2 border-[var(--color-luxury-gold)] pl-4">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-[var(--color-luxury-gold)] text-sm">★★★★★</span>
-                <span className="text-white font-semibold text-sm">Rohan Mehta</span>
-                <span className="text-white/40 text-xs flex items-center gap-1"><span className="w-1.5 h-1.5 bg-green-500 rounded-full inline-block"></span> Verified Resident</span>
-              </div>
-              <p className="text-white/70 italic text-sm">&quot;Breathtaking project in the heart of West Pune. The deck residences offer unparalleled views and K Raheja Corp&apos;s quality is unmatched. The twin clubhouses are truly world-class.&quot;</p>
-            </div>
-            <div className="border-l-2 border-[var(--color-luxury-gold)] pl-4">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-[var(--color-luxury-gold)] text-sm">★★★★★</span>
-                <span className="text-white font-semibold text-sm">Priya Kulkarni</span>
-                <span className="text-white/40 text-xs flex items-center gap-1"><span className="w-1.5 h-1.5 bg-green-500 rounded-full inline-block"></span> Verified Resident</span>
-              </div>
-              <p className="text-white/70 italic text-sm">&quot;Best investment decision of my life. Mahalunge is the future of West Pune real estate and K Raheja Vistas is the crown jewel. The 75% open space is a luxury you rarely find.&quot;</p>
-            </div>
-          </div>
-        </div>
 
         <InternalLinkingGrid currentSlug={slugKey} />
 
