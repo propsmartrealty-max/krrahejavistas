@@ -1,7 +1,7 @@
 {
   "name": "K Raheja Vistas Mahalunge",
-  "short_name": "Vistas",
-  "description": "Ultra-Luxury Premium Deck Residences at Baner Annex, Pune.",
+  "short_name": "K Raheja Vistas",
+  "description": "Ultra-Luxury Premium Deck Residences at Baner Annexe, Mahalunge, Pune by K Raheja Corp.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
@@ -9,14 +9,25 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/assets/logo.png",
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/logo.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png"
     }
   ]

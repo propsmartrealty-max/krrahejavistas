@@ -2,12 +2,43 @@ const fs = require('fs');
 const path = require('path');
 
 const srcDir = path.join(__dirname, '../.next/server/app');
+const nextStaticDir = path.join(__dirname, '../.next/static');
+const publicDir = path.join(__dirname, '../public');
 const destDir = path.join(__dirname, '../dist/client');
+const destStaticDir = path.join(destDir, '_next/static');
 
 if (!fs.existsSync(destDir)) {
   fs.mkdirSync(destDir, { recursive: true });
 }
 
+function copyRecursive(src, dest) {
+  if (!fs.existsSync(src)) return;
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest, { recursive: true });
+  }
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      copyRecursive(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+}
+
+// 1. Copy public assets into dist/client (favicon, icons, images, robots, manifest)
+console.log('🔄 Syncing public directory assets into dist/client...');
+copyRecursive(publicDir, destDir);
+console.log('✅ Public assets (favicon, icons, images, manifest) synchronized.');
+
+// 2. Copy Next.js static assets into dist/client/_next/static (CSS, JS chunks, fonts, media)
+console.log('🔄 Syncing .next/static CSS, chunks & fonts into dist/client/_next/static...');
+copyRecursive(nextStaticDir, destStaticDir);
+console.log('✅ Next.js static chunks, CSS & media files synchronized.');
+
+// 3. Copy prerendered HTML files
 function copyHtmlFiles(dir, relative = '') {
   if (!fs.existsSync(dir)) return;
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -49,7 +80,7 @@ function copyHtmlFiles(dir, relative = '') {
 console.log('🔄 Syncing Next.js prerendered HTML into Cloudflare Pages dist/client...');
 copyHtmlFiles(srcDir);
 
-// Sync sitemap.xml and robots.txt
+// 4. Sync sitemap.xml and robots.txt
 const sitemapBody = path.join(srcDir, 'sitemap.xml.body');
 if (fs.existsSync(sitemapBody)) {
   fs.copyFileSync(sitemapBody, path.join(destDir, 'sitemap.xml'));
@@ -64,7 +95,7 @@ if (fs.existsSync(robotsBody)) {
   console.log('✅ robots.txt synchronized to dist/client & public.');
 }
 
-// Sync sitemap-index.xml and sitemaps/ directory
+// 5. Sync sitemap-index.xml and sitemaps/ directory
 const sitemapIndex = path.join(__dirname, '../public/sitemap-index.xml');
 if (fs.existsSync(sitemapIndex)) {
   fs.copyFileSync(sitemapIndex, path.join(destDir, 'sitemap-index.xml'));

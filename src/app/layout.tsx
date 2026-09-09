@@ -68,6 +68,22 @@ export const metadata: Metadata = {
   publisher: 'K Raheja Corp',
   authors: [{ name: 'K Raheja Corp', url: 'https://www.krahejacorp.com' }],
   applicationName: 'K Raheja Vistas Mahalunge',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
+      { url: '/icon.png', sizes: '48x48', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  appleWebApp: {
+    title: 'K Raheja Vistas Mahalunge',
+    statusBarStyle: 'black-translucent',
+  },
   alternates: {
     canonical: '/',
     languages: {
@@ -334,19 +350,31 @@ const jsonLd = {
   }
 };
 
-// WebSite schema — triggers Google Sitelinks SearchBox in SERP for branded queries
+// WebSite schema — triggers Google Site Name and Sitelinks SearchBox in SERP for branded queries
 const websiteLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "K Raheja Vistas Mahalunge",
+  "alternateName": [
+    "K Raheja Vistas",
+    "Raheja Vistas Mahalunge",
+    "K Raheja Corp Vistas",
+    "Raheja Vistas Pune"
+  ],
   "url": DOMAIN,
   "@id": `${DOMAIN}/#website`,
   "description": "Official website of K Raheja Vistas Mahalunge — ultra-luxury 2, 3 & 4 BHK deck residences at Baner Annexe, Pune by K Raheja Corp.",
   "inLanguage": "en-IN",
   "publisher": {
     "@type": "Organization",
-    "@id": DOMAIN,
-    "name": "K Raheja Corp"
+    "@id": `${DOMAIN}/#organization`,
+    "name": "K Raheja Corp",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${DOMAIN}/assets/logo.png`,
+      "width": 48,
+      "height": 48
+    }
   },
   "potentialAction": {
     "@type": "SearchAction",
@@ -386,6 +414,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`h-full antialiased scroll-smooth ${playfair.variable} ${montserrat.variable}`}>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="48x48" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="K Raheja Vistas Mahalunge" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://app.posthog.com" />
