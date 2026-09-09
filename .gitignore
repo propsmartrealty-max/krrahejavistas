@@ -43,3 +43,4 @@ google-service-account.json
 /dist/
 .vinext/
 .wrangler/
+.astro/

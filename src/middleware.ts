@@ -37,6 +37,10 @@ const ALLOWED_BOT_SUBSTRINGS = [
   'claude',
 ];
 
+export async function onRequest(context: any, next: any) {
+  return next();
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 

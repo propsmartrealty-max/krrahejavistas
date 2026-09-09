@@ -3,8 +3,8 @@
 import { usePathname } from 'next/navigation';
 
 // Context-aware message builder based on current page slug
-function buildWhatsAppMessage(pathname: string): string {
-  const lower = pathname.toLowerCase();
+function buildWhatsAppMessage(pathname?: string | null): string {
+  const lower = (pathname || '').toLowerCase();
   
   if (lower.includes('3-bhk') || lower.includes('3bhk')) {
     return 'Hi, I came across K Raheja Vistas Mahalunge and I am interested in the 3 BHK Deck Residence. Could you please share pricing and availability?';

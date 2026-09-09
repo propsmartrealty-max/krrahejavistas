@@ -1,0 +1,123 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { COMPARISONS } from '@/data/comparisons';
+
+export function getStaticPaths() {
+  return Object.keys(COMPARISONS).map(slug => ({
+    params: { slug },
+    props: { data: COMPARISONS[slug], slug }
+  }));
+}
+
+const { data, slug } = Astro.props;
+
+const wins = data.rows.filter(r => r.krvWins === true).length;
+const ties = data.rows.filter(r => r.krvWins === 'tie').length;
+
+const tableSchema = {
+  "@context": "https://schema.org",
+  "@type": "Table",
+  "name": data.h1,
+  "description": data.description,
+  "about": {
+    "@type": "ApartmentComplex",
+    "name": "K Raheja Vistas Mahalunge",
+    "address": { "@type": "PostalAddress", "addressLocality": "Mahalunge, Pune", "addressCountry": "IN" }
+  }
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Compare Projects', href: '/compare/k-raheja-vistas-vs-godrej-hillside-mahalunge' },
+  { label: data.h1, href: `/compare/${slug}` }
+];
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  canonical={`https://www.krahejacorpvistas.com/compare/${slug}`}
+  schemas={[tableSchema]}
+>
+  <div class="min-h-screen bg-[var(--color-luxury-charcoal)] pt-32 pb-24 px-6">
+    <div class="container mx-auto max-w-5xl">
+      <Breadcrumbs items={breadcrumbs} client:idle />
+
+      {/* Hero */}
+      <div class="text-center mb-16">
+        <span class="text-[var(--color-luxury-gold)] tracking-[0.4em] uppercase text-xs font-semibold block mb-4">
+          Independent Real Estate Analysis
+        </span>
+        <h1 class="text-3xl md:text-5xl font-serif text-[var(--color-luxury-pearl)] font-light leading-tight mb-6 max-w-4xl mx-auto">
+          {data.h1}
+        </h1>
+        <p class="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
+          {data.description}
+        </p>
+
+        {/* Win Score Banner */}
+        <div class="mt-8 inline-flex items-center gap-4 bg-[var(--color-luxury-gold)]/10 border border-[var(--color-luxury-gold)]/30 px-6 py-3 rounded-full text-sm">
+          <span class="text-[var(--color-luxury-gold)] font-bold">K Raheja Vistas Advantage:</span>
+          <span class="text-white">Ahead in <strong>{wins}</strong> out of {data.rows.length} categories ({ties} tied)</span>
+        </div>
+      </div>
+
+      {/* Comparison Table */}
+      <div class="glass-panel rounded-2xl border border-white/10 overflow-hidden mb-16 shadow-2xl bg-black/40">
+        <div class="grid grid-cols-3 bg-white/5 border-b border-white/10 p-5 text-sm font-semibold tracking-wider uppercase">
+          <div class="text-white/50">Feature / Metric</div>
+          <div class="text-[var(--color-luxury-gold)] text-center font-bold">K Raheja Vistas</div>
+          <div class="text-white/60 text-center">{data.competitor}</div>
+        </div>
+
+        <div class="divide-y divide-white/5">
+          {data.rows.map((row) => (
+            <div class={`grid grid-cols-3 p-5 text-sm items-center transition-colors ${row.krvWins === true ? 'bg-[var(--color-luxury-gold)]/5 hover:bg-[var(--color-luxury-gold)]/10' : 'hover:bg-white/5'}`}>
+              <div class="text-white/80 font-medium flex items-center gap-2">
+                {row.krvWins === true && <span class="text-[var(--color-luxury-gold)] font-bold">✓</span>}
+                {row.krvWins === false && <span class="text-red-400 font-bold">✗</span>}
+                {row.krvWins === 'tie' && <span class="text-white/40 font-bold">—</span>}
+                {row.label}
+              </div>
+              <div class="text-center font-semibold text-white">
+                <span class={row.krvWins === true ? 'text-[var(--color-luxury-gold)]' : 'text-white'}>{row.krv}</span>
+              </div>
+              <div class="text-center text-white/60">
+                {row.competitor}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Other Comparisons */}
+      <div class="mb-16">
+        <h2 class="text-2xl font-serif text-[var(--color-luxury-pearl)] mb-6">Explore Other Project Comparisons</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {Object.entries(COMPARISONS).filter(([k]) => k !== slug).map(([key, item]) => (
+            <a href={`/compare/${key}`} class="glass-panel p-5 rounded-xl border border-white/10 hover:border-[var(--color-luxury-gold)] transition-colors block group bg-black/30">
+              <p class="text-white font-medium group-hover:text-[var(--color-luxury-gold)] transition-colors text-sm mb-2">{item.h1}</p>
+              <span class="text-[var(--color-luxury-gold)] text-xs font-semibold">View Comparison →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div class="text-center glass-panel p-12 rounded-3xl border border-[var(--color-luxury-gold)]/20 bg-[var(--color-luxury-gold)]/5">
+        <h2 class="text-3xl font-serif text-[var(--color-luxury-pearl)] mb-4">Experience the K Raheja Vistas Advantage</h2>
+        <p class="text-white/60 mb-8 max-w-xl mx-auto">Book a private site visit and experience Pune&apos;s finest deck residences with your own eyes.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+917744009295" class="px-10 py-4 bg-[var(--color-luxury-gold)] text-[var(--color-luxury-charcoal)] font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors">
+            Schedule Site Visit (+91 77440 09295)
+          </a>
+          <a href="/project/floorplans" class="px-10 py-4 border border-white/30 text-white font-bold uppercase tracking-widest text-sm hover:border-[var(--color-luxury-gold)] hover:text-[var(--color-luxury-gold)] transition-colors">
+            View Floor Plans
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

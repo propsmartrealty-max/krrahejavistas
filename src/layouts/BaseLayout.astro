@@ -1,0 +1,233 @@
+---
+import '@/app/globals.css';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
+import AiChatWidget from '@/components/ui/AiChatWidget';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  schemas?: Record<string, any>[];
+  article?: boolean;
+}
+
+const {
+  title = "K Raheja Vistas Mahalunge | Ultra-Luxury 2, 3 & 4 BHK Deck Homes in Pune",
+  description = "Discover K Raheja Vistas Mahalunge — 7.5-acre ultra-luxury deck residences at Baner Annexe, Pune by K Raheja Corp. 2, 3 & 4 BHK starting ₹1.10 Cr. MahaRERA: PR1260002501530. Get official price & brochure.",
+  canonical = Astro.url.href,
+  ogImage = "https://www.krahejacorpvistas.com/assets/banner.jpg",
+  schemas = []
+} = Astro.props;
+
+const DOMAIN = "https://www.krahejacorpvistas.com";
+const fullCanonical = canonical.startsWith('http') ? canonical : `${DOMAIN}${canonical}`;
+
+// Core E-E-A-T RealEstateAgent & ApartmentComplex schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": ["RealEstateAgent", "LocalBusiness", "Organization", "ApartmentComplex"],
+  "name": "K Raheja Vistas Mahalunge Pune",
+  "legalName": "K Raheja Corp",
+  "image": `${DOMAIN}/assets/logo.png`,
+  "@id": DOMAIN,
+  "url": DOMAIN,
+  "telephone": "+91-7744009295",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-7744009295",
+      "contactType": "sales",
+      "areaServed": ["IN", "US", "AE", "GB", "SG"],
+      "availableLanguage": ["English", "Hindi", "Marathi"]
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Baner Annexe, Mahalunge",
+    "addressLocality": "Pune",
+    "addressRegion": "Maharashtra",
+    "postalCode": "411045",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 18.563551,
+    "longitude": 73.7339978
+  },
+  "hasMap": "https://maps.app.goo.gl/Ej3VN8k7QdF2vRzw5",
+  "priceRange": "₹1.10 Cr - ₹4.50 Cr",
+  "currenciesAccepted": "INR, USD, AED, GBP, SGD",
+  "paymentAccepted": "Bank Transfer, Cheque, Wire Transfer",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "K Raheja Corp",
+    "url": "https://www.krahejacorp.com",
+    "logo": `${DOMAIN}/assets/logo.png`
+  },
+  "author": {
+    "@type": "Person",
+    "name": "K Raheja Expert Team",
+    "jobTitle": "Real Estate Analyst & Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "K Raheja Corp"
+    }
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".cinematic-text", "h1", "h2"]
+  }
+};
+
+// Google Site Name WebSite Schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "K Raheja Vistas Mahalunge",
+  "alternateName": [
+    "K Raheja Vistas",
+    "Raheja Vistas Mahalunge",
+    "K Raheja Corp Vistas",
+    "Raheja Vistas Pune"
+  ],
+  "url": DOMAIN,
+  "@id": `${DOMAIN}/#website`,
+  "description": "Official website of K Raheja Vistas Mahalunge — ultra-luxury 2, 3 & 4 BHK deck residences at Baner Annexe, Pune by K Raheja Corp.",
+  "inLanguage": "en-IN",
+  "publisher": {
+    "@type": "Organization",
+    "@id": `${DOMAIN}/#organization`,
+    "name": "K Raheja Corp",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${DOMAIN}/assets/logo.png`,
+      "width": 48,
+      "height": 48
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${DOMAIN}/directory?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "K Raheja Vistas Mahalunge — Official Project Tour",
+  "description": "Virtual tour of the ultra-luxury premium deck residences at K Raheja Vistas Mahalunge, Baner Annexe, Pune by K Raheja Corp.",
+  "thumbnailUrl": `${DOMAIN}/assets/banner.jpg`,
+  "uploadDate": "2025-01-01T09:00:00+05:30",
+  "duration": "PT3M30S",
+  "contentUrl": `${DOMAIN}/assets/banner.jpg`,
+  "embedUrl": `${DOMAIN}/project/gallery`,
+  "publisher": {
+    "@type": "Organization",
+    "name": "K Raheja Corp",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${DOMAIN}/assets/logo.png`
+    }
+  }
+};
+---
+
+<!doctype html>
+<html lang="en" class="h-full antialiased scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+    <meta name="theme-color" content="#0a0e17" />
+    
+    <!-- Primary Metadata -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={fullCanonical} />
+
+    <!-- Google Site Name & Branding -->
+    <meta name="application-name" content="K Raheja Vistas Mahalunge" />
+    <meta name="apple-mobile-web-app-title" content="K Raheja Vistas Mahalunge" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Favicons generated from Logo Element -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Robots & Crawler Directives -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+    <meta name="google-site-verification" content="U4zCae0__dM1wPXQMTDzwTTofHld4Y0kkiJqZ0uOC1c" />
+
+    <!-- Hreflang Alternates -->
+    <link rel="alternate" hreflang="en-IN" href={fullCanonical} />
+    <link rel="alternate" hreflang="x-default" href={fullCanonical} />
+    <link rel="alternate" hreflang="en-US" href="https://www.krahejacorpvistas.com/nri/pune-real-estate-investment-for-nri-usa" />
+    <link rel="alternate" hreflang="en-AE" href="https://www.krahejacorpvistas.com/nri/invest-in-pune-real-estate-from-dubai" />
+    <link rel="alternate" hreflang="en-GB" href="https://www.krahejacorpvistas.com/nri/luxury-homes-pune-for-nri-uk" />
+    <link rel="alternate" hreflang="en-SG" href="https://www.krahejacorpvistas.com/nri/best-nri-investment-pune-singapore" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={fullCanonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="K Raheja Vistas Mahalunge" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <!-- LCP Preload: Banner Image -->
+    <link rel="preload" as="image" href="/assets/hero-masterpiece.jpg" fetchpriority="high" />
+
+    <!-- Google Shopping / Merchant Feed Autodiscovery -->
+    <link rel="alternate" type="application/rss+xml" title="K Raheja Vistas - Google Shopping & Merchant Feed" href="https://www.krahejacorpvistas.com/api/google-merchant-feed" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    <!-- Cloudflare Real User Monitoring (RUM) Core Web Vitals Beacon -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "37ef9aec44cf4043bb3e5cd4249ad141"}'></script>
+  </head>
+
+  <body class="min-h-full flex flex-col bg-[#0a0e17] text-[#FAFAFA] font-sans overflow-x-hidden selection:bg-[#D4AF37] selection:text-black">
+    <Header client:idle />
+    
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <Footer client:idle />
+    <WhatsAppButton client:idle />
+    <AiChatWidget client:visible />
+  </body>
+</html>

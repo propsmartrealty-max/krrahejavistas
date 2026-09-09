@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | K Raheja Vistas Mahalunge"
+  description="The requested page could not be found. Explore luxury residences, floor plans, and amenities at K Raheja Vistas Mahalunge, Pune."
+>
+  <div class="min-h-screen bg-[var(--color-luxury-charcoal)] flex items-center justify-center px-6 py-32 text-center">
+    <div class="max-w-xl mx-auto">
+      <span class="text-7xl md:text-9xl font-serif text-[var(--color-luxury-gold)] block mb-4 font-light">
+        404
+      </span>
+      <h1 class="text-3xl md:text-4xl font-serif text-[var(--color-luxury-pearl)] mb-6 font-light">
+        Residence Not Found
+      </h1>
+      <p class="text-white/70 text-lg mb-10 leading-relaxed">
+        The luxury residence or architectural page you are looking for has been moved or is unavailable. Explore our master collection or connect with our sales concierge.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/"
+          class="px-8 py-4 bg-[var(--color-luxury-gold)] text-[var(--color-luxury-charcoal)] uppercase tracking-widest font-bold text-sm hover:brightness-110 transition-all inline-block"
+        >
+          Return to Homepage
+        </a>
+        <a
+          href="/project/floorplans"
+          class="px-8 py-4 border border-white/20 hover:border-[var(--color-luxury-gold)] text-white hover:text-[var(--color-luxury-gold)] uppercase tracking-widest font-bold text-sm transition-all inline-block"
+        >
+          View Floor Plans
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

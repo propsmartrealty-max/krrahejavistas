@@ -10,7 +10,17 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             
             <div className="col-span-1 md:col-span-1">
-              <Image src="/assets/logo.png" alt="K Raheja Vistas Mahalunge Pune" width={160} height={48} className="h-12 w-auto mb-6 opacity-90" />
+              <div className="flex items-center gap-3.5 mb-6">
+                <Image src="/assets/logo.png" alt="K Raheja Vistas Mahalunge Pune" width={48} height={48} className="h-12 w-12 object-contain" />
+                <div className="flex flex-col">
+                  <span className="font-serif tracking-[0.16em] text-white text-base font-bold uppercase leading-tight">
+                    K Raheja Vistas
+                  </span>
+                  <span className="text-[10px] tracking-[0.25em] text-[var(--color-luxury-gold)] uppercase font-medium">
+                    Mahalunge • West Pune
+                  </span>
+                </div>
+              </div>
               <p className="text-sm text-gray-400 mb-6 leading-relaxed">
                 Timeless Living Above the City. Experience ultra-luxury 2, 3 &amp; 4 BHK premium deck residences on 7.5 acres at Baner Annexe, Mahalunge by K Raheja Corp.
               </p>

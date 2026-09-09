@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/home/Hero';
+import ProjectHighlights from '@/components/home/ProjectHighlights';
+import Amenities from '@/components/home/Amenities';
+import AeoFaqBlock from '@/components/seo/AeoFaqBlock';
+---
+
+<BaseLayout
+  title="K Raheja Vistas Mahalunge | Ultra-Luxury 2, 3 & 4 BHK Deck Homes in Pune"
+  description="Discover K Raheja Vistas Mahalunge — 7.5-acre ultra-luxury deck residences at Baner Annexe, Pune by K Raheja Corp. 2, 3 & 4 BHK starting ₹1.10 Cr. MahaRERA: PR1260002501530. Get official price & brochure."
+  canonical="https://www.krahejacorpvistas.com/"
+>
+  <Hero client:load />
+  <ProjectHighlights client:visible />
+  <Amenities client:visible />
+  <AeoFaqBlock keyword="K Raheja Vistas Mahalunge" client:visible />
+</BaseLayout>

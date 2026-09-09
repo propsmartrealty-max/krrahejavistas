@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { NRI_MARKETS } from '@/data/nri-markets';
+
+export function getStaticPaths() {
+  return Object.keys(NRI_MARKETS).map(market => ({
+    params: { market },
+    props: { data: NRI_MARKETS[market], market }
+  }));
+}
+
+const { data, market } = Astro.props;
+
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: "NRI Investment Hub", href: "/nri/invest-in-pune-real-estate-from-dubai" },
+  { label: data.city, href: `/nri/${market}` }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateListing",
+  "name": `K Raheja Vistas Mahalunge — NRI Investment from ${data.city}`,
+  "description": `Ultra-luxury residences at K Raheja Vistas Mahalunge for NRI investors based in ${data.city}. MahaRERA Registered: PR1260002501530.`,
+  "url": `https://www.krahejacorpvistas.com/nri/${market}`,
+  "inLanguage": "en",
+  "audience": { "@type": "Audience", "audienceType": `Non-Resident Indians in ${data.city}` },
+  "offers": {
+    "@type": "Offer",
+    "price": "11000000",
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "RealEstateAgent",
+      "name": "K Raheja Corp",
+      "telephone": "+91-7744009295"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  canonical={`https://www.krahejacorpvistas.com/nri/${market}`}
+  schemas={[schema]}
+>
+  <div class="min-h-screen bg-[var(--color-luxury-charcoal)] pt-32 pb-20 px-6">
+    <div class="container mx-auto max-w-5xl">
+      <Breadcrumbs items={breadcrumbs} client:idle />
+
+      {/* Hero */}
+      <div class="text-center mb-20">
+        <span class="text-5xl block mb-6">{data.flag}</span>
+        <span class="text-[var(--color-luxury-gold)] tracking-[0.4em] uppercase text-xs font-semibold block mb-4">NRI Investment — {data.city}</span>
+        <h1 class="text-4xl md:text-6xl font-serif text-[var(--color-luxury-pearl)] font-light leading-tight mb-6 max-w-4xl mx-auto">
+          {data.headline}
+        </h1>
+        <p class="text-white/60 text-xl max-w-2xl mx-auto leading-relaxed">{data.subheadline}</p>
+      </div>
+
+      {/* Project Stats */}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        {[
+          { label: 'Master Development', value: '7.5 Acres' },
+          { label: 'Towers', value: '7 High-Rise' },
+          { label: 'Residences', value: '650 Deck Homes' },
+          { label: 'MahaRERA Reg', value: 'PR1260002501530' },
+        ].map((stat) => (
+          <div class="glass-panel p-6 rounded-2xl text-center border border-white/10 bg-black/40">
+            <p class="text-2xl md:text-3xl font-serif text-[var(--color-luxury-gold)]">{stat.value}</p>
+            <p class="text-white/50 text-xs uppercase tracking-widest mt-2">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* NRI Benefits */}
+      <div class="glass-panel p-10 md:p-16 rounded-3xl border border-white/10 mb-16 bg-black/40">
+        <h2 class="text-3xl font-serif text-[var(--color-luxury-pearl)] mb-8">
+          Why NRIs from {data.city} Choose K Raheja Vistas
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {data.benefits.map((benefit, i) => (
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-full bg-[var(--color-luxury-gold)]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="text-[var(--color-luxury-gold)] text-sm font-bold">{i + 1}</span>
+              </div>
+              <p class="text-white/80 leading-relaxed">{benefit}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div class="text-center glass-panel p-12 rounded-3xl border border-[var(--color-luxury-gold)]/20 bg-[var(--color-luxury-gold)]/5">
+        <h2 class="text-3xl font-serif text-[var(--color-luxury-pearl)] mb-4">Ready to Invest from {data.city}?</h2>
+        <p class="text-white/60 mb-8">Our dedicated NRI desk is available across time zones. Let us guide your investment journey.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+917744009295" class="px-10 py-4 bg-[var(--color-luxury-gold)] text-[var(--color-luxury-charcoal)] font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors">
+            Call NRI Desk (+91 77440 09295)
+          </a>
+          <a href="https://wa.me/917744009295" target="_blank" rel="noopener noreferrer" class="px-10 py-4 border border-[#25D366] text-[#25D366] font-bold uppercase tracking-widest text-sm hover:bg-[#25D366] hover:text-white transition-colors">
+            WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Bot } from 'lucide-react';
-import { submitLead } from '@/app/actions/leads';
+import { submitLead } from '@/app/actions/submit-lead';
 
 type Message = {
   id: string;

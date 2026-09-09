@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import seoDatabase from '@/data/seo-database.json';
+
+export function getStaticPaths() {
+  const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i));
+  const groups = ['0-9', ...alphabet];
+  
+  const allKeys = Object.keys(seoDatabase);
+  
+  return groups.map((group) => {
+    const links = allKeys.filter((key) => {
+      if (group === '0-9') {
+        return /^[0-9]/.test(key);
+      }
+      return key.startsWith(group);
+    });
+    return {
+      params: { group },
+      props: { group, links: links.slice(0, 100), totalCount: links.length },
+    };
+  });
+}
+
+const { group, links, totalCount } = Astro.props;
+const db = seoDatabase as Record<string, { h1: string }>;
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Directory', href: '/directory' },
+  { label: group.toUpperCase(), href: `/directory/${group}` }
+];
+---
+
+<BaseLayout
+  title={`Directory Category: ${group.toUpperCase()} | K Raheja Vistas`}
+  description={`Browse all K Raheja Vistas real estate listings and insights starting with ${group.toUpperCase()}`}
+  canonical={`https://www.krahejacorpvistas.com/directory/${group}`}
+>
+  <div class="min-h-screen bg-[var(--color-luxury-charcoal)] pt-32 pb-24">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <Breadcrumbs items={breadcrumbs} client:idle />
+      
+      <div class="mb-12 mt-4">
+        <h1 class="text-4xl md:text-5xl font-serif text-[var(--color-luxury-pearl)] mb-4 font-light">
+          Category: {group.toUpperCase()}
+        </h1>
+        <p class="text-lg text-white/70">
+          Showing {links.length} of {totalCount} properties and insights.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+        {links.map((slug) => (
+          <a
+            href={`/${slug}`}
+            class="p-4 bg-black/40 border border-white/5 rounded-lg hover:border-[var(--color-luxury-gold)] hover:bg-white/5 transition-all duration-300 flex flex-col justify-between"
+          >
+            <h3 class="text-[var(--color-luxury-pearl)] text-sm font-medium line-clamp-2">
+              {db[slug]?.h1 || slug}
+            </h3>
+            <p class="text-[10px] text-[var(--color-luxury-gold)] mt-4 font-semibold tracking-widest uppercase">
+              View Details →
+            </p>
+          </a>
+        ))}
+        
+        {links.length === 0 && (
+          <p class="text-white/50 col-span-full">No listings found in this category.</p>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

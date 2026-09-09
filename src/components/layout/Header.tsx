@@ -28,8 +28,23 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link href="/" className="relative z-50">
-          <Image src="/assets/logo.png" alt="K Raheja Corp" width={160} height={40} className="h-10 w-auto" />
+        <Link href="/" className="relative z-50 flex items-center gap-3.5 group">
+          <Image 
+            src="/assets/logo.png" 
+            alt="K Raheja Corp Logo" 
+            width={40} 
+            height={40} 
+            className="h-10 w-10 object-contain drop-shadow-md group-hover:scale-105 transition-transform" 
+            priority 
+          />
+          <div className="flex flex-col">
+            <span className="font-serif tracking-[0.18em] text-white text-sm md:text-base font-bold uppercase leading-tight group-hover:text-[var(--color-luxury-gold)] transition-colors">
+              K Raheja Vistas
+            </span>
+            <span className="text-[9px] tracking-[0.28em] text-[var(--color-luxury-gold)] uppercase font-medium">
+              Mahalunge • Pune
+            </span>
+          </div>
         </Link>
         
         {/* Desktop Nav */}

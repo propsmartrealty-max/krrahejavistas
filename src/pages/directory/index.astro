@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+
+const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i));
+const numbers = ['0-9'];
+const groups = [...numbers, ...alphabet];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Directory', href: '/directory' }
+];
+---
+
+<BaseLayout
+  title="Real Estate Directory | K Raheja Vistas Mahalunge"
+  description="Explore our comprehensive directory of premium real estate, luxury apartments, and configurations in West Pune."
+  canonical="https://www.krahejacorpvistas.com/directory"
+>
+  <div class="min-h-screen bg-[var(--color-luxury-charcoal)] pt-32 pb-24">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <Breadcrumbs items={breadcrumbs} client:idle />
+      
+      <div class="mb-16">
+        <h1 class="text-4xl md:text-6xl font-serif text-[var(--color-luxury-pearl)] mb-6 font-light">
+          Property Directory
+        </h1>
+        <p class="text-lg text-white/70 max-w-3xl">
+          Explore our comprehensive index of real estate configurations, micro-markets, and luxury insights in West Pune. Select a category below to browse available properties and insights.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+        {groups.map((group) => (
+          <a
+            href={`/directory/${group}`}
+            class="flex items-center justify-center h-20 bg-black/40 border border-white/10 rounded-xl hover:border-[var(--color-luxury-gold)] hover:bg-white/5 transition-all duration-300 group"
+          >
+            <span class="text-2xl font-serif text-white/80 group-hover:text-[var(--color-luxury-gold)] uppercase">
+              {group}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
