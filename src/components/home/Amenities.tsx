@@ -6,24 +6,24 @@ import { CheckCircle2 } from 'lucide-react';
 
 const amenities = [
   {
-    title: 'Twin Clubhouses',
-    description: 'An architectural marvel featuring a temperature-controlled infinity pool, private theater, and a holistic spa.',
-    image: '/assets/clubhouse.jpg'
+    title: 'Twin Clubhouses (28,000 sq.ft)',
+    description: 'An architectural marvel featuring a temperature-controlled infinity pool, private theater, and a holistic wellness spa.',
+    image: '/assets/gallery-clubhouse.webp'
   },
   {
-    title: 'Sky Lounges',
-    description: 'Exclusive 25th-floor observatory decks offering panoramic views of the Baner hills and city skyline.',
-    image: '/assets/features.jpg'
+    title: 'Sky Lounges & Balcony Decks',
+    description: 'Exclusive private observatory decks offering panoramic views of the Baner hills and sunset horizons.',
+    image: '/assets/gallery-deck-balcony.webp'
   },
   {
-    title: 'Sports Arena',
-    description: 'Championship-grade tennis courts, indoor squash, and a fully equipped gymnasium.',
-    image: '/assets/actual-clubhouse.jpg'
+    title: 'Multi-Sport Arena & Gym',
+    description: 'Championship-grade tennis courts, indoor squash, and a fully equipped state-of-the-art gymnasium.',
+    image: '/assets/gallery-sports-court.webp'
   },
   {
-    title: 'Zen Wellness Zone',
-    description: 'Dedicated yoga pavilions, reflexology paths, and lush meditation gardens spread across acres.',
-    image: '/assets/living_room.jpg'
+    title: 'Podium Greens & Zen Park',
+    description: 'Dedicated yoga pavilions, reflexology paths, and lush 75% open landscaped meditation gardens.',
+    image: '/assets/gallery-gardens.webp'
   }
 ];
 

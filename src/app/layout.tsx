@@ -103,7 +103,7 @@ export const metadata: Metadata = {
     siteName: "K Raheja Vistas Mahalunge",
     images: [
       {
-        url: "/assets/banner.jpg",
+        url: "/assets/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "K Raheja Vistas Mahalunge — Luxury Deck Residences Baner Annexe Pune",
@@ -116,7 +116,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "K Raheja Vistas Mahalunge | Ultra-Luxury 2, 3 & 4 BHK Deck Homes in Pune",
     description: "Ultra-luxury 2, 3 & 4 BHK deck residences at Baner Annexe, Pune by K Raheja Corp. MahaRERA: PR1260002501530.",
-    images: ["/assets/banner.jpg"],
+    images: ["/assets/og-image.jpg"],
   },
   verification: {
     google: "U4zCae0__dM1wPXQMTDzwTTofHld4Y0kkiJqZ0uOC1c"
@@ -405,8 +405,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* LCP Preload: Banner image is the Largest Contentful Paint element. Preloading it cuts LCP by ~200-400ms. */}
-        <link rel="preload" as="image" href="/assets/banner.jpg" fetchPriority="high" />
+        {/* LCP Preload: Hero banner image is the Largest Contentful Paint element. Preloading it cuts LCP by ~200-400ms. */}
+        <link rel="preload" as="image" href="/assets/hero-masterpiece.jpg" fetchPriority="high" />
         <link rel="alternate" type="application/rss+xml" title="K Raheja Vistas - Google Shopping & Merchant Feed" href="https://www.krahejacorpvistas.com/api/google-merchant-feed" />
       </head>
       <body className="min-h-full flex flex-col selection:bg-[var(--color-luxury-gold)] selection:text-white font-sans overflow-x-hidden">

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "K Raheja Vistas Mahalunge",
     images: [
       {
-        url: "/assets/banner.jpg",
+        url: "/assets/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "K Raheja Vistas Mahalunge — Luxury Deck Residences Baner Annex Pune",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "K Raheja Vistas Mahalunge | Ultra-Luxury 2, 3 & 4 BHK Deck Homes in Pune",
     description: "Discover K Raheja Vistas Mahalunge — 7.5-acre ultra-luxury deck residences at Baner Annex, Pune by K Raheja Corp. MahaRERA: PR1260002501530.",
-    images: ["/assets/banner.jpg"],
+    images: ["/assets/og-image.jpg"],
   },
 };
 

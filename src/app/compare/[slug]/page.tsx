@@ -108,13 +108,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: data.title,
       description: data.description,
       url: `https://www.krahejacorpvistas.com/compare/${slug}`,
-      images: [{ url: '/assets/banner.jpg', width: 1200, height: 630, alt: data.h1 }],
+      images: [{ url: '/assets/og-image.jpg', width: 1200, height: 630, alt: data.h1 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: data.title,
       description: data.description,
-      images: ['/assets/banner.jpg'],
+      images: ['/assets/og-image.jpg'],
     },
   };
 }

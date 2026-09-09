@@ -71,8 +71,8 @@ export default function ProjectHighlights() {
             <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-all duration-1000 z-10" />
             <motion.img 
               style={{ y: imgY }}
-              src="/assets/features.jpg" 
-              alt="Luxury Amenities" 
+              src="/assets/gallery-clubhouse.webp" 
+              alt="28,000 sq.ft Twin Grand Clubhouses at K Raheja Vistas Mahalunge" 
               className="w-full h-[130%] object-cover group-hover:scale-105 transition-transform duration-1000 origin-top"
             />
           </motion.div>

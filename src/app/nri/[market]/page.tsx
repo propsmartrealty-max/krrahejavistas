@@ -55,7 +55,7 @@ export function generateMetadata({ params }: { params: { market: string } }): Me
       url: `https://www.krahejacorpvistas.com/nri/${params.market}`,
       images: [
         {
-          url: '/assets/banner.jpg',
+          url: '/assets/og-image.jpg',
           width: 1200,
           height: 630,
           alt: `K Raheja Vistas Mahalunge — NRI Investment from ${data.city}`,
@@ -67,7 +67,7 @@ export function generateMetadata({ params }: { params: { market: string } }): Me
       card: 'summary_large_image',
       title: data.title,
       description: data.description,
-      images: ['/assets/banner.jpg'],
+      images: ['/assets/og-image.jpg'],
     },
   };
 }
