@@ -9,14 +9,3 @@
 /compare                /   301
 /investment-calculator  /   301
 
-# Trailing slash sanitization on primary silos
-/project/masterplan/    /project/masterplan    301
-/project/floorplans/    /project/floorplans    301
-/project/amenities/     /project/amenities     301
-/project/location/      /project/location      301
-/project/gallery/       /project/gallery       301
-/neighborhood/          /neighborhood          301
-/directory/             /directory             301
-/insights/              /insights              301
-/stories/               /stories               301
-/updates/               /updates               301

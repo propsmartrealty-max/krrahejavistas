@@ -11,6 +11,10 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   site: 'https://www.krahejacorpvistas.com',
   output: 'static',
+  trailingSlash: 'never',
+  build: {
+    format: 'file',
+  },
   adapter: cloudflare({
     imageService: 'passthrough',
   }),
