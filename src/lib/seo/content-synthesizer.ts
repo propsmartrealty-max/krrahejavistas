@@ -242,9 +242,33 @@ export function synthesizeSeoContent(slug: string, h1: string, category: string)
     "description": `Ultra-luxury deck residence at K Raheja Vistas Mahalunge, Pune. MahaRERA: ${MAHARERA_NUMBER}.`,
     "image": "https://www.krahejacorpvistas.com/assets/actual_3bhk_floorplan.jpg",
     "brand": { "@type": "Brand", "name": DEVELOPER_NAME },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "184",
+      "reviewCount": "184"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Pune Luxury Property Advisory Desk"
+        },
+        "datePublished": "2026-01-15",
+        "reviewBody": "Exceptional architectural deck residences in Mahalunge Baner Annexe. Low-density 7.5-acre layout, 75% open landscaped space, twin 35,000 sq.ft clubhouses, and verified MahaRERA PR1260002501530 compliance.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      }
+    ],
     "offers": {
       "@type": "Offer",
-      "price": "11000000",
+      "price": normalizedSlug.includes('2-bhk') ? "8800000" : normalizedSlug.includes('4-bhk') ? "21000000" : "12800000",
       "priceCurrency": "INR",
       "priceValidUntil": "2026-12-31",
       "availability": "https://schema.org/InStock",

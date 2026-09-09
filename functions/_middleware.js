@@ -47,6 +47,121 @@ export async function onRequest(context) {
   }
 
   // --------------------------------------------------------------------------
+  // 0.5 GOOGLE MERCHANT CENTER & RSS FEED EDGE DELIVERY (SUB-5MS TTFB)
+  // --------------------------------------------------------------------------
+  if (pathname === "/api/google-merchant-feed" || pathname === "/google-merchant-feed.xml") {
+    const merchantFeedXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title>K Raheja Vistas Mahalunge - Official Luxury Property Feed</title>
+    <link>https://${CANONICAL_HOST}</link>
+    <description>Ultra-premium residences at K Raheja Vistas, Baner Annexe, Mahalunge, West Pune by K Raheja Corp. MahaRERA: ${MAHARERA_NUMBER}</description>
+    <item>
+      <g:id>krv-2bhk-deck-001</g:id>
+      <g:title><![CDATA[K Raheja Vistas - Luxury 2 BHK Deck Residence, Mahalunge Pune]]></g:title>
+      <g:description><![CDATA[Ultra-premium 2 BHK deck residence at K Raheja Vistas, Baner Annexe, Mahalunge, West Pune. 75% open spaces, twin clubhouses, 5 mins from Hinjewadi IT Park. MahaRERA: PR1260002501530.]]></g:description>
+      <g:link>https://${CANONICAL_HOST}/configurations/luxury-2-bhk-apartments-mahalunge</g:link>
+      <g:image_link>https://${CANONICAL_HOST}/assets/living_room.jpg</g:image_link>
+      <g:price>11000000.00 INR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:brand><![CDATA[K Raheja Corp]]></g:brand>
+      <g:google_product_category>Real Estate</g:google_product_category>
+      <g:custom_label_0>2 BHK</g:custom_label_0>
+      <g:custom_label_1>Mahalunge</g:custom_label_1>
+      <g:custom_label_2>West Pune</g:custom_label_2>
+      <g:custom_label_3>Deck Residence</g:custom_label_3>
+      <g:custom_label_4>Luxury</g:custom_label_4>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>krv-3bhk-deck-001</g:id>
+      <g:title><![CDATA[K Raheja Vistas - Premium 3 BHK Deck Residence, Mahalunge Pune]]></g:title>
+      <g:description><![CDATA[Ultra-luxury 3 BHK deck residence at K Raheja Vistas, Baner Annexe. Expansive private decks, temperature-controlled pool, smart home integration. MahaRERA: PR1260002501530.]]></g:description>
+      <g:link>https://${CANONICAL_HOST}/configurations/3-bhk-premium-deck-residences-baner-annexe</g:link>
+      <g:image_link>https://${CANONICAL_HOST}/assets/actual_3bhk_floorplan.jpg</g:image_link>
+      <g:price>14500000.00 INR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:brand><![CDATA[K Raheja Corp]]></g:brand>
+      <g:google_product_category>Real Estate</g:google_product_category>
+      <g:custom_label_0>3 BHK</g:custom_label_0>
+      <g:custom_label_1>Mahalunge</g:custom_label_1>
+      <g:custom_label_2>Baner Annexe</g:custom_label_2>
+      <g:custom_label_3>Deck Residence</g:custom_label_3>
+      <g:custom_label_4>Ultra-Luxury</g:custom_label_4>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>krv-4bhk-premium-001</g:id>
+      <g:title><![CDATA[K Raheja Vistas - Spacious 4 BHK Premium Home, Baner Annexe Pune]]></g:title>
+      <g:description><![CDATA[Palatial 4 BHK premium home at K Raheja Vistas Mahalunge. Multi-generational luxury living with private decks, panoramic views, and resort-style amenities in West Pune.]]></g:description>
+      <g:link>https://${CANONICAL_HOST}/configurations/luxury-4-bhk-homes-mahalunge</g:link>
+      <g:image_link>https://${CANONICAL_HOST}/assets/actual_clubhouse.jpg</g:image_link>
+      <g:price>22000000.00 INR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:brand><![CDATA[K Raheja Corp]]></g:brand>
+      <g:google_product_category>Real Estate</g:google_product_category>
+      <g:custom_label_0>4 BHK</g:custom_label_0>
+      <g:custom_label_1>Mahalunge</g:custom_label_1>
+      <g:custom_label_2>Baner Annexe</g:custom_label_2>
+      <g:custom_label_3>Premium</g:custom_label_3>
+      <g:custom_label_4>Ultra-Luxury</g:custom_label_4>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>krv-duplex-001</g:id>
+      <g:title><![CDATA[K Raheja Vistas - Exclusive Duplex Residence, Mahalunge West Pune]]></g:title>
+      <g:description><![CDATA[Extraordinary double-height duplex residence at K Raheja Vistas, Baner Annexe. Two-floor luxury living with private terraces and panoramic Baner hill views.]]></g:description>
+      <g:link>https://${CANONICAL_HOST}/configurations/exclusive-duplex-mahalunge</g:link>
+      <g:image_link>https://${CANONICAL_HOST}/assets/living_room.jpg</g:image_link>
+      <g:price>28000000.00 INR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:brand><![CDATA[K Raheja Corp]]></g:brand>
+      <g:google_product_category>Real Estate</g:google_product_category>
+      <g:custom_label_0>Duplex</g:custom_label_0>
+      <g:custom_label_1>Mahalunge</g:custom_label_1>
+      <g:custom_label_2>West Pune</g:custom_label_2>
+      <g:custom_label_3>Signature Collection</g:custom_label_3>
+      <g:custom_label_4>Ultra-Luxury</g:custom_label_4>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>krv-penthouse-001</g:id>
+      <g:title><![CDATA[K Raheja Vistas - Sky Penthouse, Mahalunge Baner Annexe Pune]]></g:title>
+      <g:description><![CDATA[The pinnacle of luxury living — Sky Penthouses at K Raheja Vistas Mahalunge. 360-degree panoramic views, exclusive sky deck, premium concierge. The crown of West Pune.]]></g:description>
+      <g:link>https://${CANONICAL_HOST}/configurations/sky-penthouse-baner-annexe-pune</g:link>
+      <g:image_link>https://${CANONICAL_HOST}/assets/actual_master_layout.jpg</g:image_link>
+      <g:price>45000000.00 INR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:brand><![CDATA[K Raheja Corp]]></g:brand>
+      <g:google_product_category>Real Estate</g:google_product_category>
+      <g:custom_label_0>Penthouse</g:custom_label_0>
+      <g:custom_label_1>Mahalunge</g:custom_label_1>
+      <g:custom_label_2>Baner Annexe</g:custom_label_2>
+      <g:custom_label_3>Sky Collection</g:custom_label_3>
+      <g:custom_label_4>Ultra-Luxury</g:custom_label_4>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+  </channel>
+</rss>`;
+
+    return new Response(merchantFeedXml, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/rss+xml; charset=utf-8",
+        "Cache-Control": "public, max-age=3600, s-maxage=86400",
+        "Access-Control-Allow-Origin": "*",
+        "X-Robots-Tag": "index, follow",
+        "X-Edge-Service": "Google-Merchant-Feed"
+      }
+    });
+  }
+
+  // --------------------------------------------------------------------------
   // 1. ADVANCED BOT & CRAWLER CLASSIFICATION MATRIX
   // --------------------------------------------------------------------------
   const isGooglebot = /googlebot|googlebot-image|googlebot-video|googlebot-news|google-inspectiontool|adsbot-google/i.test(userAgent);
