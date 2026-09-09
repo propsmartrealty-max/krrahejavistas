@@ -113,19 +113,14 @@ export default function robots(): MetadataRoute.Robots {
         crawlDelay: 3,
       },
 
-      // ─── TIER 2: Unauthorized AI Dataset Harvesters — Explicit Denial ───
-      { userAgent: 'GPTBot',          disallow: '/' },
-      { userAgent: 'ChatGPT-User',    disallow: '/' },
-      { userAgent: 'anthropic-ai',    disallow: '/' },
-      { userAgent: 'ClaudeBot',       disallow: '/' },
-      { userAgent: 'Claude-Web',      disallow: '/' },
-      { userAgent: 'cohere-ai',       disallow: '/' },
-      { userAgent: 'CCBot',           disallow: '/' },
-      { userAgent: 'Diffbot',         disallow: '/' },
-      { userAgent: 'Bytespider',      disallow: '/' },
-      { userAgent: 'Omgili',          disallow: '/' },
+      // ─── TIER 2: AI & LLM Search Engine Optimization (GEO Discovery) ───
+      {
+        userAgent: ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'PerplexityBot', 'cohere-ai', 'Amazonbot'],
+        allow: '/',
+        disallow: ['/admin/', '/portal/', '/api/', '/campaign/'],
+      },
 
-      // ─── TIER 3: High-Volume SEO Scraper Tools — Disallow ───
+      // ─── TIER 3: High-Volume Unapproved Data Scrapers — Disallow ───
       { userAgent: 'AhrefsBot',  disallow: '/' },
       { userAgent: 'SemrushBot', disallow: '/' },
       { userAgent: 'MJ12bot',    disallow: '/' },
@@ -133,11 +128,22 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'PetalBot',   disallow: '/' },
       { userAgent: 'BLEXBot',    disallow: '/' },
       { userAgent: 'RogerBot',   disallow: '/' },
+      { userAgent: 'Bytespider', disallow: '/' },
+      { userAgent: 'CCBot',      disallow: '/' },
 
       // ─── TIER 4: Default Wildcard Crawler Rules (Crawl-Budget Optimization) ───
       {
         userAgent: '*',
-        allow: '/',
+        allow: [
+          '/',
+          '/manifest.json',
+          '/sitemap.xml',
+          '/sitemap-index.xml',
+          '/sitemaps/*',
+          '/robots.txt',
+          '/llms.txt',
+          '/llms-full.txt',
+        ],
         disallow: [
           // Admin & Private internal surfaces
           '/admin/',
@@ -161,8 +167,7 @@ export default function robots(): MetadataRoute.Robots {
           '/*?q=*',
           '/*&*',
 
-          // Raw data files
-          '/*.json',
+          // Raw internal source maps
           '/*.map',
 
           // Security paths (defense in depth)
@@ -173,7 +178,6 @@ export default function robots(): MetadataRoute.Robots {
           '/xmlrpc.php',
           '/phpmyadmin/',
         ],
-        crawlDelay: 2,
       },
     ],
 

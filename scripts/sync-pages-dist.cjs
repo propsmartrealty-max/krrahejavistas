@@ -64,4 +64,26 @@ if (fs.existsSync(robotsBody)) {
   console.log('✅ robots.txt synchronized to dist/client & public.');
 }
 
+// Sync sitemap-index.xml and sitemaps/ directory
+const sitemapIndex = path.join(__dirname, '../public/sitemap-index.xml');
+if (fs.existsSync(sitemapIndex)) {
+  fs.copyFileSync(sitemapIndex, path.join(destDir, 'sitemap-index.xml'));
+  console.log('✅ sitemap-index.xml synchronized to dist/client.');
+}
+
+const publicSitemapsDir = path.join(__dirname, '../public/sitemaps');
+const destSitemapsDir = path.join(destDir, 'sitemaps');
+if (fs.existsSync(publicSitemapsDir)) {
+  if (!fs.existsSync(destSitemapsDir)) {
+    fs.mkdirSync(destSitemapsDir, { recursive: true });
+  }
+  const sitemapFiles = fs.readdirSync(publicSitemapsDir);
+  for (const file of sitemapFiles) {
+    if (file.endsWith('.xml')) {
+      fs.copyFileSync(path.join(publicSitemapsDir, file), path.join(destSitemapsDir, file));
+    }
+  }
+  console.log(`✅ ${sitemapFiles.length} child sitemaps synchronized to dist/client/sitemaps.`);
+}
+
 console.log('✅ Prerendered HTML & SEO files fully synchronized.');

@@ -112,34 +112,16 @@ Disallow: /campaign/
 Crawl-delay: 3
 
 User-Agent: GPTBot
-Disallow: /
-
 User-Agent: ChatGPT-User
-Disallow: /
-
-User-Agent: anthropic-ai
-Disallow: /
-
 User-Agent: ClaudeBot
-Disallow: /
-
-User-Agent: Claude-Web
-Disallow: /
-
+User-Agent: PerplexityBot
 User-Agent: cohere-ai
-Disallow: /
-
-User-Agent: CCBot
-Disallow: /
-
-User-Agent: Diffbot
-Disallow: /
-
-User-Agent: Bytespider
-Disallow: /
-
-User-Agent: Omgili
-Disallow: /
+User-Agent: Amazonbot
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /api/
+Disallow: /campaign/
 
 User-Agent: AhrefsBot
 Disallow: /
@@ -162,8 +144,21 @@ Disallow: /
 User-Agent: RogerBot
 Disallow: /
 
+User-Agent: Bytespider
+Disallow: /
+
+User-Agent: CCBot
+Disallow: /
+
 User-Agent: *
 Allow: /
+Allow: /manifest.json
+Allow: /sitemap.xml
+Allow: /sitemap-index.xml
+Allow: /sitemaps/*
+Allow: /robots.txt
+Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /admin/
 Disallow: /portal/
 Disallow: /api/
@@ -180,7 +175,6 @@ Disallow: /*?filter=*
 Disallow: /*?search=*
 Disallow: /*?q=*
 Disallow: /*&*
-Disallow: /*.json
 Disallow: /*.map
 Disallow: /.env
 Disallow: /.git/
@@ -188,7 +182,6 @@ Disallow: /wp-admin/
 Disallow: /wp-login.php
 Disallow: /xmlrpc.php
 Disallow: /phpmyadmin/
-Crawl-delay: 2
 
 Sitemap: https://www.krahejacorpvistas.com/sitemap.xml
 Sitemap: https://www.krahejacorpvistas.com/sitemap-index.xml
