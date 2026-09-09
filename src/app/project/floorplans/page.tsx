@@ -32,7 +32,7 @@ const itemListSchema = {
         "image": "https://www.krahejacorpvistas.com/assets/actual_3bhk_floorplan.jpg",
         "sku": "KRV-2BHK",
         "brand": { "@type": "Brand", "name": "K Raheja Corp" },
-        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "312", "bestRating": "5" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "312", "reviewCount": "312", "bestRating": "5", "worstRating": "1" },
         "offers": { "@type": "Offer", "price": "11000000", "priceCurrency": "INR", "availability": "https://schema.org/InStock", "url": "https://www.krahejacorpvistas.com/project/floorplans" }
       }
     },
@@ -46,7 +46,7 @@ const itemListSchema = {
         "image": "https://www.krahejacorpvistas.com/assets/actual_3bhk_floorplan.jpg",
         "sku": "KRV-3BHK",
         "brand": { "@type": "Brand", "name": "K Raheja Corp" },
-        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "312", "bestRating": "5" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "312", "reviewCount": "312", "bestRating": "5", "worstRating": "1" },
         "offers": { "@type": "Offer", "price": "14500000", "priceCurrency": "INR", "availability": "https://schema.org/InStock", "url": "https://www.krahejacorpvistas.com/project/floorplans" }
       }
     },
@@ -60,7 +60,7 @@ const itemListSchema = {
         "image": "https://www.krahejacorpvistas.com/assets/actual_master_layout.jpg",
         "sku": "KRV-4BHK-DUPLEX",
         "brand": { "@type": "Brand", "name": "K Raheja Corp" },
-        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "89", "bestRating": "5" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "89", "reviewCount": "89", "bestRating": "5", "worstRating": "1" },
         "offers": { "@type": "Offer", "price": "22000000", "priceCurrency": "INR", "availability": "https://schema.org/InStock", "url": "https://www.krahejacorpvistas.com/project/floorplans" }
       }
     }

@@ -319,27 +319,6 @@ const jsonLd = {
   "priceRange": "₹1.10 Cr - ₹2.5 Cr",
   "currenciesAccepted": "INR, USD, AED, GBP, SGD",
   "paymentAccepted": "Bank Transfer, Cheque, Wire Transfer",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "312",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "author": { "@type": "Person", "name": "Rohan Mehta" },
-      "reviewBody": "Breathtaking project in the heart of West Pune. The deck residences offer unparalleled views and K Raheja Corp's quality is unmatched."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "author": { "@type": "Person", "name": "Priya Kulkarni" },
-      "reviewBody": "Best investment decision of my life. Mahalunge is the future of West Pune real estate and K Raheja Vistas is the crown jewel."
-    }
-  ],
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": [
