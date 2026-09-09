@@ -1,71 +1,61 @@
+'use client';
+
 import Script from 'next/script';
 
+// High-converting voice-search optimized FAQ dataset for Google SGE & Assistant
 const VOICE_FAQS = [
   {
-    question: "What is the price of 3 BHK in Mahalunge Pune?",
-    answer: "The ultra-luxury 3 BHK deck residences at K Raheja Vistas Mahalunge start from ₹1.45 Crore. These homes feature expansive private decks, premium marble interiors, and are MahaRERA registered under number PR1260002501530."
+    question: "What is the price of 2 and 3 BHK at K Raheja Vistas Mahalunge Pune?",
+    answer: "At K Raheja Vistas Mahalunge, luxury 2 BHK deck residences start from ₹93 Lakh* onwards, premium 2 BHK Regalia from ₹1.10 Cr*, and ultra-spacious 3 BHK signature residences start from ₹1.62 Cr*. 4 BHK duplex and royal penthouses are available on request."
   },
   {
-    question: "Is K Raheja Vistas Mahalunge a good investment in 2026?",
-    answer: "Yes. The Mahalunge micro-market in West Pune has recorded 18% year-on-year appreciation — three times the national average. With the upcoming Pune Metro Line 3 and proximity to Hinjewadi IT Park, it remains Pune's top investment destination."
+    question: "Is K Raheja Vistas Mahalunge a good real estate investment in 2026?",
+    answer: "Yes. Mahalunge is West Pune's fastest-growing luxury corridor. Backed by K Raheja Corp's execution pedigree, proximity to Hinjewadi Phase 1, and the upcoming Pune Metro Line 3, the project offers strong rental yields of 4.5–5.5% and high capital appreciation potential."
   },
   {
     question: "Where is K Raheja Vistas located in Pune?",
-    answer: "K Raheja Vistas is located at Baner Annexe, Mahalunge, in West Pune. It is just 4.5 kilometres from Hinjewadi Phase 1, 2 kilometres from Balewadi High Street, and provides direct access to the Mumbai-Pune Expressway."
+    answer: "K Raheja Vistas is strategically located at Baner Annexe, Mahalunge, Pune 411045. It is positioned directly opposite the Baner hills, just 5 minutes from Hinjewadi IT Park and 10 minutes from Balewadi High Street."
   },
   {
-    question: "What configurations are available at K Raheja Vistas Mahalunge?",
-    answer: "K Raheja Vistas offers 2 BHK luxury apartments, 3 BHK premium deck residences, 4 BHK spacious homes, exclusive duplex residences, and signature sky penthouses. All configurations feature private decks and smart home automation."
+    question: "What is the MahaRERA registration number for K Raheja Vistas?",
+    answer: "K Raheja Vistas Mahalunge is officially registered with Maharashtra Real Estate Regulatory Authority under MahaRERA No. PR1260002501530. Verified project details, land title, and approvals are publicly accessible on the MahaRERA portal."
   },
   {
-    question: "What amenities does K Raheja Vistas have?",
-    answer: "K Raheja Vistas offers twin world-class clubhouses, a temperature-controlled infinity pool, a fully equipped gymnasium, 75% open landscaped spaces, a 2.65-acre central courtyard, tennis courts, children's play areas, and a multi-tier security system."
+    question: "What amenities are provided at K Raheja Vistas Mahalunge?",
+    answer: "The project spans 7.5 acres with 75% landscaped open spaces and twin grand clubhouses totaling 28,000 sq.ft. Amenities include a temperature-controlled infinity swimming pool, tennis and squash courts, gymnasium, jogging promenade, yoga pavilion, and 5-tier security."
   },
   {
-    question: "Is K Raheja Vistas MahaRERA registered?",
-    answer: "Yes, K Raheja Vistas Mahalunge is fully registered under MahaRERA with registration number PR1260002501530. This guarantees complete legal transparency, buyer protection, and timely project completion."
-  },
-  {
-    question: "Can NRIs invest in K Raheja Vistas Mahalunge?",
-    answer: "Absolutely. K Raheja Vistas has a dedicated NRI investment desk serving buyers from Dubai, the United Kingdom, Singapore, and the United States. The purchase process is fully FEMA-compliant and can be completed remotely."
-  },
-  {
-    question: "What is the rental yield in Mahalunge West Pune?",
-    answer: "Properties in Mahalunge, West Pune currently command rental yields of 4 to 6 percent per annum, driven by high demand from professionals working in the Hinjewadi IT corridor — home to over 300,000 IT employees across 200 multinational companies."
-  },
-  {
-    question: "Is K Raheja Vistas the best K Raheja Corp project in Pune?",
-    answer: "K Raheja Vistas Mahalunge is widely considered one of the flagship K Raheja Corp projects in Pune. Building on the legacy of K Raheja Corp's commercial and residential excellence across India, this 7.5-acre development represents the pinnacle of luxury living in Pune West."
-  },
-  {
-    question: "What is the possession date for K Raheja Vistas Mahalunge?",
-    answer: "K Raheja Vistas Mahalunge is registered under MahaRERA No. PR1260002501530. For the latest possession timeline, please contact the official sales team or refer to the MahaRERA portal at maharera.mahaonline.gov.in."
-  },
-  {
-    question: "How far is K Raheja Vistas from Hinjewadi IT Park?",
-    answer: "K Raheja Vistas Mahalunge is approximately 4.5 km from Hinjewadi Phase 1, making it a prime choice for IT professionals. The daily commute takes under 10 minutes without traffic, giving residents unparalleled work-life balance."
-  },
-  {
-    question: "What is the size of 2 BHK and 3 BHK in K Raheja Vistas?",
-    answer: "K Raheja Vistas offers 2 BHK residences starting from 870 sq ft and 3 BHK deck residences starting from 1,290 sq ft. Each home features a private deck, premium marble finishes, and smart home automation as standard."
+    question: "What configurations and carpet areas are available?",
+    answer: "K Raheja Vistas offers 2 BHK residences (678 to 911 sq.ft carpet), 3 BHK signature deck residences (1,110 sq.ft carpet), 4 BHK royal deck homes (1,824 sq.ft carpet), and bespoke Jodi flat configurations with expansive double-aspect balconies."
   },
   {
     question: "Is there a Pune Metro connection near K Raheja Vistas?",
-    answer: "Yes. The upcoming Pune Metro Line 3 (Hinjewadi–Shivajinagar corridor) will have a station within close proximity to K Raheja Vistas Mahalunge, significantly enhancing connectivity and driving further capital appreciation in the micro-market."
+    answer: "Yes. The upcoming Pune Metro Line 3 (Hinjewadi–Shivajinagar corridor) has a station in close proximity to K Raheja Vistas Mahalunge, providing rapid congestion-free transit across Pune."
   }
 ];
 
 export default function AeoFaqBlock({ keyword }: { keyword: string }) {
-  // Prepend a keyword-specific FAQ to the standard voice FAQs
+  const cleanKeyword = (keyword || '').trim();
+  const isSelf = !cleanKeyword || /k\s*raheja\s*vistas/i.test(cleanKeyword);
+
+  const topQuestion = isSelf
+    ? "Why is K Raheja Vistas Mahalunge considered Pune's premier luxury residential address?"
+    : `Why choose K Raheja Vistas Mahalunge for ${cleanKeyword}?`;
+
+  const topAnswer = isSelf
+    ? "Developed by India's premier luxury developer K Raheja Corp across 7.5 pristine acres at Baner Annexe, K Raheja Vistas features 7 high-rise towers with 75% open spaces, 28,000 sq.ft twin clubhouses, and private deck residences with full MahaRERA compliance (PR1260002501530)."
+    : `Homebuyers and investors evaluating ${cleanKeyword} will find K Raheja Vistas Mahalunge to be the premier address in West Pune — combining K Raheja Corp's trusted delivery, 28,000 sq.ft twin clubhouses, private panoramic decks, and 5-minute connectivity to Hinjewadi Phase 1 and Balewadi High Street.`;
+
+  // Prepend dynamic contextual question to standard voice FAQs
   const faqs = [
     {
-      question: `Is K Raheja Vistas Mahalunge a good choice for ${keyword}?`,
-      answer: `Yes. ${keyword} seekers will find K Raheja Vistas Mahalunge to be the definitive luxury address in West Pune — offering ultra-premium residences across 7.5 acres, MahaRERA compliance, and a proven 18% YoY appreciation track record.`
+      question: topQuestion,
+      answer: topAnswer
     },
     ...VOICE_FAQS
   ];
 
-  // SpeakableSpecification — tells Google Assistant which content to read aloud
+  // SpeakableSpecification for Google Assistant
   const speakableSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -75,11 +65,11 @@ export default function AeoFaqBlock({ keyword }: { keyword: string }) {
     }
   };
 
-  // FAQPage Schema — triggers Google SERP rich expandable accordion snippets
+  // FAQPage Schema for SERP expandable rich snippets
   const faqPageSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.slice(0, 6).map((faq) => ({
+    "mainEntity": faqs.slice(0, 8).map((faq) => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
@@ -90,26 +80,44 @@ export default function AeoFaqBlock({ keyword }: { keyword: string }) {
   };
 
   return (
-    <div className="mt-24 max-w-4xl mx-auto border-t border-white/10 pt-16">
+    <section className="w-full bg-[#0a0e17] py-20 px-4 md:px-6 border-t border-white/10 text-white relative">
       <Script id="speakable-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       <Script id="faq-page-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }} />
 
-      <h3 className="text-3xl font-serif text-[var(--color-luxury-gold)] mb-2">Frequently Asked Questions</h3>
-      <p className="text-white/40 text-sm mb-10 tracking-wide uppercase text-xs">Optimized for Google Assistant, SERP Snippets & Voice Search</p>
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center md:text-left mb-12">
+          <span className="text-[var(--color-luxury-gold)] text-xs uppercase tracking-[0.25em] font-semibold mb-2 block">
+            Official Knowledge Base
+          </span>
+          <h3 className="text-3xl md:text-5xl font-serif text-[var(--color-luxury-gold)] mb-3 font-semibold">
+            Frequently Asked Questions
+          </h3>
+          <p className="text-gray-400 text-xs md:text-sm tracking-wide uppercase font-medium">
+            Optimized for Google Assistant, SERP Snippets &amp; Voice Search
+          </p>
+        </div>
 
-      <div className="space-y-4">
-        {faqs.map((faq, index) => (
-          <details key={index} className="group bg-white/5 rounded-xl border border-white/5 hover:border-white/15 transition-colors overflow-hidden">
-            <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
-              <h4 className="text-base font-medium text-white pr-4 speakable-headline">{faq.question}</h4>
-              <span className="text-[var(--color-luxury-gold)] text-xl font-light flex-shrink-0 group-open:rotate-45 transition-transform duration-300">+</span>
-            </summary>
-            <div className="px-6 pb-6">
-              <p className="text-white/70 leading-relaxed speakable-description">{faq.answer}</p>
-            </div>
-          </details>
-        ))}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <details 
+              key={index} 
+              className="group bg-[#111827] rounded-2xl border border-white/10 hover:border-[var(--color-luxury-gold)]/60 transition-all duration-300 overflow-hidden shadow-lg"
+            >
+              <summary className="flex items-center justify-between p-6 cursor-pointer list-none select-none">
+                <h4 className="text-base md:text-lg font-medium text-white group-hover:text-[var(--color-luxury-gold)] transition-colors pr-4 speakable-headline">
+                  {faq.question}
+                </h4>
+                <span className="text-[var(--color-luxury-gold)] text-2xl font-light flex-shrink-0 group-open:rotate-45 transition-transform duration-300">
+                  +
+                </span>
+              </summary>
+              <div className="px-6 pb-6 pt-2 text-gray-300 text-sm md:text-base leading-relaxed border-t border-white/5 speakable-description">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -54,8 +54,8 @@ export default function Footer() {
                 <li><Link href="/project/floorplans?type=3bhk" className="hover:text-white transition-colors">3 BHK Luxury Deck Homes</Link></li>
                 <li><Link href="/project/floorplans?type=4bhk" className="hover:text-white transition-colors">4 BHK Palatial &amp; Duplexes</Link></li>
                 <li><Link href="/nri/invest-in-pune-real-estate-from-dubai" className="hover:text-white transition-colors">Global NRI Investment Desk</Link></li>
-                <li><Link href="/compare" className="hover:text-white transition-colors">K Raheja Vistas vs Competitors</Link></li>
-                <li><Link href="/investment-calculator" className="hover:text-white transition-colors">Real Estate ROI Calculator</Link></li>
+                <li><Link href="/compare/k-raheja-vistas-vs-godrej-hillside-mahalunge" className="hover:text-white transition-colors">K Raheja Vistas vs Godrej Hillside</Link></li>
+                <li><Link href="/project/floorplans" className="hover:text-white transition-colors">Price &amp; Investment Breakup</Link></li>
               </ul>
             </div>
             
