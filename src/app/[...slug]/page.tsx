@@ -9,6 +9,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import Script from 'next/script';
 import seoDatabase from '@/data/seo-database.json';
 import DynamicGallery from '@/components/ui/DynamicGallery';
+import { synthesizeSeoContent } from '@/lib/seo/content-synthesizer';
 
 type Props = {
   params: Promise<{ slug: string[] }>;
@@ -29,7 +30,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: data.title,
     description: data.description,
-    robots: (data.content === null || data.content === undefined) ? { index: false, follow: true } : undefined,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     alternates: {
       canonical: `https://www.krahejacorpvistas.com/${slugKey}`,
     },
@@ -90,13 +101,45 @@ export default async function ProgrammaticLandingPage(props: Props) {
     { label: data.h1, href: `/${slugKey}` }
   ];
 
+  const synthesized = synthesizeSeoContent(slugKey, data.h1, data.category);
+
   return (
     <div className="bg-[var(--color-luxury-charcoal)] min-h-screen">
       
+      {/* Dynamic Semantic Schemas for Google E-E-A-T & Rich Snippets */}
+      <Script
+        id="synthesized-realestate-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(synthesized.schemas.realEstateListing) }}
+      />
+      <Script
+        id="synthesized-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(synthesized.schemas.faqPage) }}
+      />
+      <Script
+        id="synthesized-breadcrumbs-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(synthesized.schemas.breadcrumbs) }}
+      />
+      {synthesized.schemas.product && (
+        <Script
+          id="synthesized-product-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(synthesized.schemas.product) }}
+        />
+      )}
+      {synthesized.schemas.article && (
+        <Script
+          id="synthesized-article-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(synthesized.schemas.article) }}
+        />
+      )}
+
       {/* Cinematic Hero Header */}
       <div className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* VIDEO THUMBNAIL SERP DOMINANCE: Silent ambient video forces Google to validate VideoObject schema */}
           <video
             autoPlay
             loop
@@ -133,269 +176,129 @@ export default async function ProgrammaticLandingPage(props: Props) {
         
         <Breadcrumbs items={breadcrumbItems} />
 
-        {/* Article Schema for Blogs — datePublished required for Google Discover */}
-        {isArticle ? (
-          <Script
-            id="article-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "NewsArticle",
-                "headline": data.title,
-                "description": data.description,
-                "image": {
-                  "@type": "ImageObject",
-                  "url": "https://www.krahejacorpvistas.com/assets/banner.jpg",
-                  "width": 1200,
-                  "height": 630
-                },
-                "datePublished": "2025-01-15T09:00:00+05:30",
-                "dateModified": new Date().toISOString(),
-                "mainEntityOfPage": {
-                  "@type": "WebPage",
-                  "@id": `https://www.krahejacorpvistas.com/${slugKey}`
-                },
-                "author": {
-                  "@type": "Organization",
-                  "name": "K Raheja Corp",
-                  "url": "https://www.krahejacorpvistas.com"
-                },
-                "publisher": {
-                  "@type": "Organization",
-                  "name": "K Raheja Vistas Mahalunge",
-                  "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://www.krahejacorpvistas.com/assets/logo.png",
-                    "width": 200,
-                    "height": 60
-                  }
-                },
-                "keywords": `${data.h1}, Pune Real Estate 2025, Luxury Homes Pune, West Pune Property, Mahalunge Investment, K Raheja Vistas`,
-                "articleSection": "Real Estate Insights"
-              })
-            }}
-          />
-        ) : (
-          <>
-            {/* === GOOGLE LOCAL PACK / MAPS: Multi-Geo RealEstateListing Schema === */}
-            <Script
-              id="realestate-schema"
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "RealEstateListing",
-                  "name": data.title,
-                  "description": data.description,
-                  "url": `https://www.krahejacorpvistas.com/${slugKey}`,
-                  "datePosted": new Date().toISOString().split('T')[0],
-                  "about": {
-                    "@type": "ApartmentComplex",
-                    "name": "K Raheja Vistas Mahalunge",
-                    "numberOfAccommodationUnits": 650,
-                    "amenityFeature": [
-                      { "@type": "LocationFeatureSpecification", "name": "Twin Clubhouses", "value": true },
-                      { "@type": "LocationFeatureSpecification", "name": "Infinity Pool", "value": true },
-                      { "@type": "LocationFeatureSpecification", "name": "75% Open Space", "value": true },
-                      { "@type": "LocationFeatureSpecification", "name": "Smart Home", "value": true }
-                    ],
-                    "address": {
-                      "@type": "PostalAddress",
-                      "streetAddress": "K Raheja Vistas, Mahalunge",
-                      "addressLocality": "Pune",
-                      "addressRegion": "Maharashtra",
-                      "postalCode": "411045",
-                      "addressCountry": "IN"
-                    },
-                    "geo": {
-                      "@type": "GeoCoordinates",
-                      "latitude": "18.563551",
-                      "longitude": "73.7339978"
-                    },
-                    "areaServed": [
-                      { "@type": "City", "name": "Pune" },
-                      { "@type": "Place", "name": "Mahalunge", "geo": { "@type": "GeoCoordinates", "latitude": "18.563551", "longitude": "73.7339978" }},
-                      { "@type": "Place", "name": "Baner Annexe", "geo": { "@type": "GeoCoordinates", "latitude": "18.5590", "longitude": "73.7721" }},
-                      { "@type": "Place", "name": "Hinjewadi IT Park", "geo": { "@type": "GeoCoordinates", "latitude": "18.5912", "longitude": "73.7389" }},
-                      { "@type": "Place", "name": "Balewadi High Street", "geo": { "@type": "GeoCoordinates", "latitude": "18.5666", "longitude": "73.7765" }},
-                      { "@type": "Place", "name": "Wakad", "geo": { "@type": "GeoCoordinates", "latitude": "18.5993", "longitude": "73.7621" }},
-                      { "@type": "Place", "name": "Aundh", "geo": { "@type": "GeoCoordinates", "latitude": "18.5617", "longitude": "73.8074" }}
-                    ]
-                  },
-                  "offers": {
-                    "@type": "Offer",
-                    "price": "11000000",
-                    "priceCurrency": "INR",
-                    "availability": "https://schema.org/InStock",
-                    "seller": {
-                      "@type": "RealEstateAgent",
-                      "name": "K Raheja Corp",
-                      "image": "https://www.krahejacorpvistas.com/assets/logo.png"
-                    }
-                  }
-                })
-              }}
-            />
-
-            {/* === GOOGLE SHOPPING: Product Schema for Configuration pages === */}
-            {(data.category === 'configurations' || slugKey.includes('bhk') || slugKey.includes('duplex') || slugKey.includes('penthouse')) && (
-              <Script
-                id="product-schema"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Product",
-                    "name": data.title,
-                    "description": data.description,
-                    "image": "https://www.krahejacorpvistas.com/assets/actual_3bhk_floorplan.jpg",
-                    "brand": { "@type": "Brand", "name": "K Raheja Corp" },
-                    "offers": {
-                      "@type": "Offer",
-                      "price": "11000000",
-                      "priceCurrency": "INR",
-                      "availability": "https://schema.org/InStock",
-                      "url": `https://www.krahejacorpvistas.com/${slugKey}`
-                    }
-                  })
-                }}
-              />
-            )}
-
-            {/* === GOOGLE DISCOVER / NEWS: NewsArticle Schema for Investment & Lifestyle === */}
-            {(data.category === 'investment' || data.category === 'lifestyle') && (
-              <Script
-                id="newsarticle-schema"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "NewsArticle",
-                    "headline": data.h1,
-                    "description": data.description,
-                    "image": "https://www.krahejacorpvistas.com/assets/actual_master_layout.jpg",
-                    "datePublished": new Date().toISOString(),
-                    "dateModified": new Date().toISOString(),
-                    "author": {
-                      "@type": "Organization",
-                      "name": "K Raheja Corp",
-                      "url": "https://www.krahejacorpvistas.com"
-                    },
-                    "publisher": {
-                      "@type": "Organization",
-                      "name": "K Raheja Vistas Market Insights",
-                      "logo": {
-                        "@type": "ImageObject",
-                        "url": "https://www.krahejacorpvistas.com/assets/logo.png"
-                      }
-                    },
-                    "mainEntityOfPage": {
-                      "@type": "WebPage",
-                      "@id": `https://www.krahejacorpvistas.com/${slugKey}`
-                    },
-                    "keywords": `${data.h1}, Pune Real Estate, Luxury Homes Pune, West Pune Property, Mahalunge Investment, K Raheja Vistas`
-                  })
-                }}
-              />
-            )}
-
-            {/* === GOOGLE IMAGE SEARCH: ImageObject schema for gallery images === */}
-            <Script
-              id="imageobject-schema"
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "ImageGallery",
-                  "name": `${data.h1} — Photo Gallery`,
-                  "description": `High-resolution photos and images of ${data.h1} at K Raheja Vistas Mahalunge, Baner Annexe, Pune.`,
-                  "url": `https://www.krahejacorpvistas.com/${slugKey}`,
-                  "image": [
-                    {
-                      "@type": "ImageObject",
-                      "contentUrl": "https://www.krahejacorpvistas.com/assets/banner.jpg",
-                      "name": `K Raheja Vistas Mahalunge — ${data.h1}`,
-                      "description": `Ultra-luxury deck residences at K Raheja Vistas Mahalunge, Pune — ${data.h1}`,
-                      "width": 1920, "height": 1080,
-                      "representativeOfPage": true
-                    },
-                    {
-                      "@type": "ImageObject",
-                      "contentUrl": "https://www.krahejacorpvistas.com/assets/living_room.jpg",
-                      "name": "K Raheja Vistas Mahalunge — Premium Living Room Interior",
-                      "description": "Exquisitely designed living room with floor-to-ceiling windows and private deck access at K Raheja Vistas Mahalunge.",
-                      "width": 1920, "height": 1080
-                    },
-                    {
-                      "@type": "ImageObject",
-                      "contentUrl": "https://www.krahejacorpvistas.com/assets/actual_master_layout.jpg",
-                      "name": "K Raheja Vistas Mahalunge — Master Site Layout Plan",
-                      "description": "7.5-acre master layout of K Raheja Vistas Mahalunge showing 7 towers, twin clubhouses and 75% open green spaces.",
-                      "width": 1920, "height": 1080
-                    },
-                    {
-                      "@type": "ImageObject",
-                      "contentUrl": "https://www.krahejacorpvistas.com/assets/actual_3bhk_floorplan.jpg",
-                      "name": "K Raheja Vistas Mahalunge — 3 BHK Deck Apartment Floor Plan",
-                      "description": "Detailed floor plan of the 3 BHK premium deck apartment at K Raheja Vistas Mahalunge, Baner Annexe, Pune.",
-                      "width": 1200, "height": 900
-                    }
-                  ]
-                })
-              }}
-            />
-          </>
-        )}
-        <div className="max-w-4xl mx-auto bg-black/30 backdrop-blur-md p-10 md:p-16 rounded-2xl border border-white/5 shadow-2xl">
+        <div className="max-w-5xl mx-auto bg-black/40 backdrop-blur-md p-8 md:p-14 rounded-2xl border border-white/10 shadow-2xl">
           
           {!isArticle ? (
-            <div className="text-center">
-              {/* Enterprise-Grade Semantic Content Weaver (Helpful Content Update Compliance) */}
+            <div>
+              {/* Enterprise-Grade Semantic Content Weaver */}
               {data.content ? (
                 <div 
                   className="mb-12 prose prose-invert max-w-none prose-p:text-lg prose-p:text-white/80 prose-headings:font-serif prose-headings:font-light text-left"
                   dangerouslySetInnerHTML={{ __html: data.content }} 
                 />
               ) : (
-                <div className="mb-12 text-left">
-                  <p className="text-xl text-[var(--color-luxury-gold)] mb-6 font-serif">
-                    {data.description}
-                  </p>
-                  <p className="text-white/70 text-lg mb-6 leading-relaxed">
-                    When evaluating <strong>{data.h1}</strong>, discerning buyers understand that true luxury extends beyond mere square footage. At K Raheja Vistas Mahalunge, we have meticulously engineered a residential ecosystem that redefines the standards of premium living in West Pune. Nestled against the backdrop of scenic foothills, this 7.5-acre master development integrates advanced architectural paradigms with holistic wellness infrastructure.
-                  </p>
-                  <h2 className="text-2xl font-serif text-[var(--color-luxury-pearl)] mb-4 mt-8">The Signature Edge of {data.h1}</h2>
-                  <p className="text-white/70 text-lg mb-6 leading-relaxed">
-                    The demand for <em>{data.h1.toLowerCase()}</em> is driven by a profound shift in lifestyle preferences. Modern professionals and families are no longer settling for conventional apartment layouts. Our premium deck residences are conceptualized to offer continuous, unobstructed views, allowing natural light and ventilation to permeate every corner of your home. The integration of smart-home technology ensures that your living experience is both intuitive and secure.
-                  </p>
-                  <ul className="list-none space-y-3 mb-8 text-white/80">
-                    <li className="flex items-start"><span className="text-[var(--color-luxury-gold)] mr-3">✦</span> <strong>75% Open Landscaping:</strong> Unparalleled green spaces offering a sanctuary from urban congestion.</li>
-                    <li className="flex items-start"><span className="text-[var(--color-luxury-gold)] mr-3">✦</span> <strong>Twin Clubhouses:</strong> State-of-the-art recreational facilities catering to both active and leisure pursuits.</li>
-                    <li className="flex items-start"><span className="text-[var(--color-luxury-gold)] mr-3">✦</span> <strong>Strategic Connectivity:</strong> Seamless access to the Hinjewadi IT corridor and the Mumbai-Pune Expressway.</li>
-                  </ul>
-                  <p className="text-white/70 text-lg mb-6 leading-relaxed">
-                    Investing in <strong>{data.h1}</strong> at K Raheja Vistas is more than a real estate transaction; it is an acquisition of a legacy. The West Pune micro-market continues to exhibit robust capital appreciation, driven by infrastructure developments like the upcoming Metro Line 3 and the PMRDA Town Planning Scheme.
+                <div 
+                  className="mb-12 text-left"
+                  dangerouslySetInnerHTML={{ __html: synthesized.overviewHtml }}
+                />
+              )}
+
+              {/* === ARCHITECTURAL & RESIDENTIAL SPECIFICATIONS MATRIX === */}
+              <div className="my-12 text-left">
+                <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
+                  <div>
+                    <h3 className="text-2xl font-serif text-[var(--color-luxury-pearl)]">
+                      Architectural & Technical Specifications
+                    </h3>
+                    <p className="text-xs uppercase tracking-widest text-[var(--color-luxury-gold)] mt-1">
+                      K Raheja Vistas Mahalunge — Benchmark Quality Standards
+                    </p>
+                  </div>
+                  <span className="hidden md:inline-block px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/70">
+                    MahaRERA: PR1260002501530
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {synthesized.specsTable.map((spec, i) => (
+                    <div key={i} className="p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/15 transition-colors">
+                      <div className="text-xs uppercase tracking-wider text-white/50 mb-1">{spec.label}</div>
+                      <div className="text-sm font-medium text-white/90">{spec.value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* === HYPERLOCAL COMMUTE & TRANSIT RADAR === */}
+              <div className="my-12 text-left">
+                <div className="mb-6 pb-3 border-b border-white/10">
+                  <h3 className="text-2xl font-serif text-[var(--color-luxury-pearl)]">
+                    Micro-Market Commute & Connectivity Radar
+                  </h3>
+                  <p className="text-xs uppercase tracking-widest text-[var(--color-luxury-gold)] mt-1">
+                    Signal-Free Transit from Mahalunge & Baner Annexe
                   </p>
                 </div>
-              )}
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm text-white/80 border-collapse">
+                    <thead>
+                      <tr className="border-b border-white/10 text-xs uppercase tracking-wider text-[var(--color-luxury-gold)]">
+                        <th className="py-3 px-4">Key Hub / Landmark</th>
+                        <th className="py-3 px-4">Distance</th>
+                        <th className="py-3 px-4">Travel Time</th>
+                        <th className="py-3 px-4">Strategic Value</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {synthesized.commuteRadar.map((commute, i) => (
+                        <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                          <td className="py-3 px-4 font-medium text-white">{commute.destination}</td>
+                          <td className="py-3 px-4 text-[var(--color-luxury-gold)]">{commute.distance}</td>
+                          <td className="py-3 px-4">{commute.travelTime}</td>
+                          <td className="py-3 px-4 text-white/60 text-xs">{commute.highlight}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* === FINANCIAL & INVESTMENT HIGHLIGHTS === */}
+              <div className="my-12 text-left">
+                <div className="mb-6 pb-3 border-b border-white/10">
+                  <h3 className="text-2xl font-serif text-[var(--color-luxury-pearl)]">
+                    Estimated Financial & Investment Framework (2026)
+                  </h3>
+                  <p className="text-xs uppercase tracking-widest text-[var(--color-luxury-gold)] mt-1">
+                    West Pune Real Estate Capital & Rental Appreciation
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {synthesized.financialMatrix.map((fin, i) => (
+                    <div key={i} className="p-5 rounded-xl bg-white/[0.03] border border-white/10 flex flex-col justify-between">
+                      <div>
+                        <div className="text-xs uppercase tracking-wider text-white/50 mb-2">{fin.item}</div>
+                        <div className="text-xl font-serif text-[var(--color-luxury-gold)] font-bold">{fin.value}</div>
+                      </div>
+                      <div className="text-xs text-white/60 mt-3 pt-3 border-t border-white/5">{fin.note}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
               
               <DynamicGallery slug={slugKey} title={data.h1} />
               
-              <div className="flex justify-center gap-6 mb-16">
+              <div className="flex flex-wrap justify-center gap-4 my-12">
                 <MagneticButton>
                   <Link
                     href="/"
-                    className="px-8 py-4 bg-[var(--color-luxury-gold)] text-[var(--color-luxury-charcoal)] uppercase tracking-widest font-bold text-sm"
+                    className="px-8 py-4 bg-[var(--color-luxury-gold)] text-[var(--color-luxury-charcoal)] uppercase tracking-widest font-bold text-sm hover:brightness-110 transition-all"
                   >
-                    Explore Project
+                    Download Master Brochure & Floor Plans
                   </Link>
                 </MagneticButton>
+                <a
+                  href="tel:+917744009295"
+                  className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white uppercase tracking-widest font-bold text-sm rounded-none border border-white/20 transition-all flex items-center gap-2"
+                >
+                  <span>Connect with Sales Desk: +91-7744009295</span>
+                </a>
               </div>
             </div>
           ) : (
             <div className="prose prose-invert prose-lg max-w-none prose-headings:font-serif prose-headings:text-[var(--color-luxury-pearl)] prose-a:text-[var(--color-luxury-gold)]">
-              {/* Render the expansive research data */}
               <div dangerouslySetInnerHTML={{ __html: data.content || '' }} />
               
               <div className="mt-16 pt-8 border-t border-white/10 flex justify-center">

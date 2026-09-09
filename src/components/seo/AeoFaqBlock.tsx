@@ -6,7 +6,7 @@ const VOICE_FAQS = [
     answer: "The ultra-luxury 3 BHK deck residences at K Raheja Vistas Mahalunge start from ₹1.45 Crore. These homes feature expansive private decks, premium marble interiors, and are MahaRERA registered under number PR1260002501530."
   },
   {
-    question: "Is K Raheja Vistas Mahalunge a good investment in 2024?",
+    question: "Is K Raheja Vistas Mahalunge a good investment in 2026?",
     answer: "Yes. The Mahalunge micro-market in West Pune has recorded 18% year-on-year appreciation — three times the national average. With the upcoming Pune Metro Line 3 and proximity to Hinjewadi IT Park, it remains Pune's top investment destination."
   },
   {
@@ -75,12 +75,27 @@ export default function AeoFaqBlock({ keyword }: { keyword: string }) {
     }
   };
 
+  // FAQPage Schema — triggers Google SERP rich expandable accordion snippets
+  const faqPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.slice(0, 6).map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <div className="mt-24 max-w-4xl mx-auto border-t border-white/10 pt-16">
       <Script id="speakable-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
+      <Script id="faq-page-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }} />
 
       <h3 className="text-3xl font-serif text-[var(--color-luxury-gold)] mb-2">Frequently Asked Questions</h3>
-      <p className="text-white/40 text-sm mb-10 tracking-wide uppercase text-xs">Optimized for Google Assistant & Voice Search</p>
+      <p className="text-white/40 text-sm mb-10 tracking-wide uppercase text-xs">Optimized for Google Assistant, SERP Snippets & Voice Search</p>
 
       <div className="space-y-4">
         {faqs.map((faq, index) => (
