@@ -49,10 +49,10 @@ export default function Header() {
             priority 
           />
           <div className="flex items-center gap-2">
-            <span className="font-serif tracking-[0.14em] text-white text-sm sm:text-base font-bold uppercase whitespace-nowrap group-hover:text-[var(--color-luxury-gold)] transition-colors">
+            <span className="font-google-sans tracking-tight text-white text-base sm:text-lg font-bold uppercase whitespace-nowrap group-hover:text-[var(--color-luxury-gold)] transition-colors">
               K Raheja Vistas
             </span>
-            <span className="hidden sm:inline-flex items-center text-[9px] tracking-[0.22em] text-[var(--color-luxury-gold)] uppercase font-semibold px-2 py-0.5 rounded-full bg-[var(--color-luxury-gold)]/10 border border-[var(--color-luxury-gold)]/30 whitespace-nowrap">
+            <span className="hidden sm:inline-flex items-center text-[9px] tracking-[0.22em] text-[var(--color-luxury-gold)] font-google-sans uppercase font-semibold px-2 py-0.5 rounded-full bg-[var(--color-luxury-gold)]/10 border border-[var(--color-luxury-gold)]/30 whitespace-nowrap">
               Mahalunge
             </span>
           </div>

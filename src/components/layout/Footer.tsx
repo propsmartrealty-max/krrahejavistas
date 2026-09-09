@@ -13,10 +13,10 @@ export default function Footer() {
               <div className="flex items-center gap-3.5 mb-6">
                 <Image src="/assets/logo.png" alt="K Raheja Vistas Mahalunge Pune" width={48} height={48} className="h-12 w-12 object-contain" />
                 <div className="flex flex-col">
-                  <span className="font-serif tracking-[0.16em] text-white text-base font-bold uppercase leading-tight">
+                  <span className="font-google-sans tracking-tight text-white text-lg font-bold uppercase leading-tight">
                     K Raheja Vistas
                   </span>
-                  <span className="text-[10px] tracking-[0.25em] text-[var(--color-luxury-gold)] uppercase font-medium">
+                  <span className="text-[10px] tracking-[0.25em] text-[var(--color-luxury-gold)] uppercase font-semibold font-google-sans">
                     Mahalunge • West Pune
                   </span>
                 </div>
