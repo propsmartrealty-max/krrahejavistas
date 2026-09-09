@@ -461,6 +461,13 @@ export default function RootLayout({
             }}
           />
         )}
+        {/* Cloudflare Web Analytics (Core Web Vitals RUM) */}
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "37ef9aec44cf4043bb3e5cd4249ad141"}'
+          strategy="afterInteractive"
+        />
         <SmoothScroll>
           <CustomCursor />
           <Header />
