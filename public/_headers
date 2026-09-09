@@ -26,20 +26,17 @@
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
   CDN-Cache-Control: max-age=31536000
-  Access-Control-Allow-Origin: *
 
 # High-Resolution Real Estate Project Assets
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   CDN-Cache-Control: max-age=31536000
-  Access-Control-Allow-Origin: *
 
 # Multi-Tier Dynamic Sitemaps Matrix
 /sitemaps/*
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600, s-maxage=86400
   CDN-Cache-Control: max-age=86400
-  Access-Control-Allow-Origin: *
 
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
