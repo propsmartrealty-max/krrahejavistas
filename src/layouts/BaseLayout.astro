@@ -31,10 +31,17 @@ const organizationSchema = {
   "@type": ["RealEstateAgent", "LocalBusiness", "Organization", "ApartmentComplex"],
   "name": "K Raheja Vistas Mahalunge Pune",
   "legalName": "K Raheja Corp",
-  "image": `${DOMAIN}/assets/logo.png`,
+  "image": `${DOMAIN}/assets/k-raheja-corp-logo.svg`,
   "@id": DOMAIN,
   "url": DOMAIN,
   "telephone": "+91-7744009295",
+  "sameAs": [
+    "https://www.wikidata.org/wiki/Q6342823",
+    "https://en.wikipedia.org/wiki/K_Raheja_Corp",
+    "https://www.krahejacorp.com",
+    "https://maharera.mahaonline.gov.in"
+  ],
+  "identifier": "MahaRERA: PR1260002501530",
   "contactPoint": [
     {
       "@type": "ContactPoint",
@@ -58,14 +65,76 @@ const organizationSchema = {
     "longitude": 73.7339978
   },
   "hasMap": "https://maps.app.goo.gl/Ej3VN8k7QdF2vRzw5",
-  "priceRange": "₹1.10 Cr - ₹4.50 Cr",
+  "priceRange": "₹93 Lakh - ₹4.50 Cr",
   "currenciesAccepted": "INR, USD, AED, GBP, SGD",
   "paymentAccepted": "Bank Transfer, Cheque, Wire Transfer",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "320",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "K Raheja Vistas Residence Inventory",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "2 BHK Elite Deck Residence",
+        "price": "9300000",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "url": `${DOMAIN}/project/floorplans`
+      },
+      {
+        "@type": "Offer",
+        "name": "2 BHK Regalia Grand Deck",
+        "price": "11000000",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "url": `${DOMAIN}/project/floorplans`
+      },
+      {
+        "@type": "Offer",
+        "name": "3 BHK Signature Deck Residence",
+        "price": "16200000",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "url": `${DOMAIN}/project/floorplans`
+      },
+      {
+        "@type": "Offer",
+        "name": "4 BHK Duplex Sky Villa",
+        "price": "18800000",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "url": `${DOMAIN}/project/floorplans`
+      },
+      {
+        "@type": "Offer",
+        "name": "4 BHK Royal Deck Penthouse",
+        "price": "27400000",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "url": `${DOMAIN}/project/floorplans`
+      }
+    ]
+  },
   "parentOrganization": {
     "@type": "Organization",
     "name": "K Raheja Corp",
     "url": "https://www.krahejacorp.com",
-    "logo": `${DOMAIN}/assets/logo.png`
+    "logo": `${DOMAIN}/assets/k-raheja-corp-logo.svg`,
+    "sameAs": "https://www.wikidata.org/wiki/Q6342823"
   },
   "author": {
     "@type": "Person",
@@ -78,7 +147,7 @@ const organizationSchema = {
   },
   "speakable": {
     "@type": "SpeakableSpecification",
-    "cssSelector": [".cinematic-text", "h1", "h2"]
+    "cssSelector": [".cinematic-text", ".speakable-headline", ".speakable-description", "h1", "h2"]
   }
 };
 
@@ -157,10 +226,13 @@ const videoSchema = {
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="mobile-web-app-capable" content="yes" />
 
-    <!-- Favicons generated from Logo Element -->
+    <!-- Favicons generated from K Raheja Corp Logo Elements -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -171,13 +243,17 @@ const videoSchema = {
     <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
     <meta name="google-site-verification" content="U4zCae0__dM1wPXQMTDzwTTofHld4Y0kkiJqZ0uOC1c" />
 
-    <!-- Hreflang Alternates -->
+    <!-- Hreflang Alternates (Strict Google Multi-Regional Guidelines) -->
     <link rel="alternate" hreflang="en-IN" href={fullCanonical} />
     <link rel="alternate" hreflang="x-default" href={fullCanonical} />
-    <link rel="alternate" hreflang="en-US" href="https://www.krahejacorpvistas.com/nri/pune-real-estate-investment-for-nri-usa" />
-    <link rel="alternate" hreflang="en-AE" href="https://www.krahejacorpvistas.com/nri/invest-in-pune-real-estate-from-dubai" />
-    <link rel="alternate" hreflang="en-GB" href="https://www.krahejacorpvistas.com/nri/luxury-homes-pune-for-nri-uk" />
-    <link rel="alternate" hreflang="en-SG" href="https://www.krahejacorpvistas.com/nri/best-nri-investment-pune-singapore" />
+    {(fullCanonical === DOMAIN || fullCanonical === `${DOMAIN}/`) && (
+      <>
+        <link rel="alternate" hreflang="en-US" href="https://www.krahejacorpvistas.com/nri/pune-real-estate-investment-for-nri-usa" />
+        <link rel="alternate" hreflang="en-AE" href="https://www.krahejacorpvistas.com/nri/invest-in-pune-real-estate-from-dubai" />
+        <link rel="alternate" hreflang="en-GB" href="https://www.krahejacorpvistas.com/nri/luxury-homes-pune-for-nri-uk" />
+        <link rel="alternate" hreflang="en-SG" href="https://www.krahejacorpvistas.com/nri/best-nri-investment-pune-singapore" />
+      </>
+    )}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />

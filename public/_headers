@@ -19,20 +19,49 @@
   Access-Control-Allow-Origin: *
   Timing-Allow-Origin: *
   
-  # Early Hints (HTTP 103)
-  Link: <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin
+  # Early Hints (HTTP 103) for Sub-15ms TTFB & Instant Preloading
+  Link: <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, </assets/k-raheja-corp-logo.svg>; rel=preload; as=image, </assets/hero-masterpiece.jpg>; rel=preload; as=image
 
-# Static Compiled Bundles - 1 Year Immutable Edge & Browser Caching
+# Astro Static Compiled Bundles - 1 Year Immutable Edge & Browser Caching
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+  CDN-Cache-Control: max-age=31536000
+
+# Next.js Static Compiled Bundles
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
   CDN-Cache-Control: max-age=31536000
 
-# High-Resolution Real Estate Project Assets
+# High-Resolution Real Estate Project Assets & Authentic Blueprints
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   CDN-Cache-Control: max-age=31536000
+  Access-Control-Allow-Origin: *
 
-# Multi-Tier Dynamic Sitemaps Matrix
+# High-Performance Brand Favicons & App Icons
+/favicon.svg
+  Content-Type: image/svg+xml; charset=utf-8
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  CDN-Cache-Control: max-age=2592000
+  Access-Control-Allow-Origin: *
+
+/favicon.ico
+  Content-Type: image/x-icon
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  CDN-Cache-Control: max-age=2592000
+  Access-Control-Allow-Origin: *
+
+/apple-touch-icon.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  CDN-Cache-Control: max-age=2592000
+
+/icon*.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  CDN-Cache-Control: max-age=2592000
+
+# Modular XML Sitemaps Matrix
 /sitemaps/*
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600, s-maxage=86400
@@ -44,6 +73,37 @@
   CDN-Cache-Control: max-age=86400
 
 /sitemap-index.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+
+/sitemap-core.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+
+/sitemap-configurations.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+
+/sitemap-locations.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+
+/sitemap-comparisons.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+
+/sitemap-nri.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  CDN-Cache-Control: max-age=86400
+
+# Google Shopping & Merchant Feed
+/api/google-merchant-feed
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600, s-maxage=86400
   CDN-Cache-Control: max-age=86400
@@ -69,7 +129,7 @@
   Cache-Control: public, max-age=86400
   CDN-Cache-Control: max-age=86400
 
-# HTML Caching Policy (Sub-15ms Edge Cache with Instant Revalidation on Deploy)
+# HTML Edge Caching with Stale-While-Revalidate
 /
   Cache-Control: public, max-age=0, must-revalidate
   CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400

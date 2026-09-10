@@ -70,8 +70,11 @@ export const metadata: Metadata = {
   applicationName: 'K Raheja Vistas Mahalunge',
   icons: {
     icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
       { url: '/icon.png', sizes: '48x48', type: 'image/png' },
+      { url: '/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-16.png', sizes: '16x16', type: 'image/png' },
       { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
@@ -393,8 +396,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`h-full antialiased scroll-smooth ${playfair.variable} ${montserrat.variable}`}>
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" sizes="48x48" />
         <link rel="icon" type="image/png" sizes="48x48" href="/icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="K Raheja Vistas Mahalunge" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />

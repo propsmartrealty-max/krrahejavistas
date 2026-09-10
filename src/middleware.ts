@@ -56,6 +56,10 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/llms.txt') ||
     pathname === '/sitemap-index.xml' ||
     pathname.startsWith('/llms-full.txt') ||
+    pathname === '/favicon.svg' ||
+    pathname === '/favicon.ico' ||
+    pathname.startsWith('/icon') ||
+    pathname === '/apple-touch-icon.png' ||
     pathname === '/manifest.json'
   ) {
     return NextResponse.next();
@@ -162,6 +166,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   // Run middleware on application routes, strictly excluding static assets, ACME challenges, and sitemaps
   matcher: [
-    '/((?!api|_next/static|_next/image|_next/data|assets|favicon.ico|\\.well-known|robots\\.txt|sitemap\\.xml|sitemap-index\\.xml|sitemaps|default-indexnow-key\\.txt|llms\\.txt|llms-full\\.txt|manifest\\.json).*)',
+    '/((?!api|_next/static|_next/image|_next/data|assets|favicon\\.ico|favicon\\.svg|icon|apple-touch-icon|\\.well-known|robots\\.txt|sitemap\\.xml|sitemap-index\\.xml|sitemaps|default-indexnow-key\\.txt|llms\\.txt|llms-full\\.txt|manifest\\.json).*)',
   ],
 };

@@ -240,7 +240,7 @@ export function synthesizeSeoContent(slug: string, h1: string, category: string)
     "@type": "Product",
     "name": `${normalizedH1} — ${PROJECT_NAME}`,
     "description": `Ultra-luxury deck residence at K Raheja Vistas Mahalunge, Pune. MahaRERA: ${MAHARERA_NUMBER}.`,
-    "image": "https://www.krahejacorpvistas.com/assets/actual_3bhk_floorplan.jpg",
+    "image": "https://www.krahejacorpvistas.com/assets/floorplan-3bhk-signature.webp",
     "brand": { "@type": "Brand", "name": DEVELOPER_NAME },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -281,14 +281,14 @@ export function synthesizeSeoContent(slug: string, h1: string, category: string)
     "@type": "NewsArticle",
     "headline": `${normalizedH1} — Comprehensive Real Estate Analysis 2026`,
     "description": `In-depth market intelligence, price trends, and infrastructure outlook for ${normalizedH1} at K Raheja Vistas Mahalunge, Pune.`,
-    "image": "https://www.krahejacorpvistas.com/assets/banner.jpg",
+    "image": "https://www.krahejacorpvistas.com/assets/og-image.jpg",
     "datePublished": "2026-01-15T09:00:00+05:30",
     "dateModified": new Date().toISOString(),
     "author": { "@type": "Organization", "name": DEVELOPER_NAME, "url": "https://www.krahejacorpvistas.com" },
     "publisher": {
       "@type": "Organization",
       "name": `${PROJECT_NAME} Insights`,
-      "logo": { "@type": "ImageObject", "url": "https://www.krahejacorpvistas.com/assets/logo.png" }
+      "logo": { "@type": "ImageObject", "url": "https://www.krahejacorpvistas.com/assets/k-raheja-corp-logo.svg" }
     }
   } : undefined;
 
