@@ -2,8 +2,13 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/home/Hero';
 import ProjectHighlights from '@/components/home/ProjectHighlights';
+import FloorPlansPreview from '@/components/home/FloorPlansPreview';
+import MasterLayoutPreview from '@/components/home/MasterLayoutPreview';
 import Amenities from '@/components/home/Amenities';
+import LocationRadar from '@/components/home/LocationRadar';
 import AeoFaqBlock from '@/components/seo/AeoFaqBlock';
+import ContactFormInline from '@/components/ui/ContactFormInline';
+import { CalendarCheck, ShieldCheck } from 'lucide-react';
 ---
 
 <BaseLayout
@@ -13,6 +18,36 @@ import AeoFaqBlock from '@/components/seo/AeoFaqBlock';
 >
   <Hero client:load />
   <ProjectHighlights client:visible />
+  <FloorPlansPreview client:visible />
+  <MasterLayoutPreview client:visible />
   <Amenities client:visible />
+  <LocationRadar client:visible />
   <AeoFaqBlock keyword="K Raheja Vistas Mahalunge" client:visible />
+
+  {/* VIP Site Visit Booking & Consultation Section */}
+  <section id="book-visit" class="w-full bg-[#070a12] py-24 px-4 sm:px-6 lg:px-8 border-t border-white/10 relative">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--color-luxury-gold)]/10 border border-[var(--color-luxury-gold)]/30 text-[var(--color-luxury-gold)] text-xs font-semibold uppercase tracking-widest mb-4">
+          <CalendarCheck size={14} />
+          <span>Priority Developer Sales Desk</span>
+        </div>
+        <h2 class="font-google-sans text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+          Schedule a Private Experience Tour
+        </h2>
+        <p class="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+          Walk through the fully furnished sample deck residences, explore panoramic hill views, and review customized payment schedules with authorized K Raheja Corp advisors.
+        </p>
+      </div>
+
+      <div class="bg-[#0e1422] rounded-3xl border border-white/10 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <ContactFormInline client:visible />
+      </div>
+
+      <div class="mt-8 text-center text-xs text-gray-500 flex items-center justify-center gap-2">
+        <ShieldCheck size={14} class="text-emerald-400" />
+        <span>Official MahaRERA PR1260002501530 • Zero Brokerage Direct Developer Pricing</span>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

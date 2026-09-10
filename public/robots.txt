@@ -152,6 +152,8 @@ Disallow: /
 
 User-Agent: *
 Allow: /
+Allow: /favicon.svg
+Allow: /favicon.ico
 Allow: /manifest.json
 Allow: /sitemap.xml
 Allow: /sitemap-index.xml

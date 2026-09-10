@@ -20,7 +20,7 @@
   Timing-Allow-Origin: *
   
   # Early Hints (HTTP 103) for Sub-15ms TTFB & Instant Preloading
-  Link: <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, </assets/k-raheja-corp-logo.svg>; rel=preload; as=image, </assets/hero-masterpiece.jpg>; rel=preload; as=image
+  Link: <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, </favicon.svg>; rel=preload; as=image, </assets/logo.png>; rel=preload; as=image, </assets/hero-masterpiece.jpg>; rel=preload; as=image
 
 # Astro Static Compiled Bundles - 1 Year Immutable Edge & Browser Caching
 /_astro/*
