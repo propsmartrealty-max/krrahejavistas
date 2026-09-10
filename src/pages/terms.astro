@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Terms & Conditions', href: '/terms' }
+];
+
+const termsSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms of Use & MahaRERA Disclaimer | K Raheja Vistas Mahalunge",
+  "description": "Official Terms and Conditions and MahaRERA statutory disclaimers for K Raheja Vistas Mahalunge, Baner Annexe, Pune.",
+  "url": "https://www.krahejacorpvistas.com/terms",
+  "publisher": {
+    "@type": "Organization",
+    "name": "K Raheja Corp",
+    "url": "https://www.krahejacorpvistas.com"
+  }
+};
+---
+
+<BaseLayout
+  title="Terms of Use & MahaRERA Disclaimer | K Raheja Vistas Mahalunge"
+  description="Terms and conditions, copyright, and statutory MahaRERA compliance disclosures for K Raheja Vistas Mahalunge (PR1260002501530) by K Raheja Corp."
+  canonical="https://www.krahejacorpvistas.com/terms"
+  schemas={[termsSchema]}
+>
+  <div class="min-h-screen bg-[var(--color-luxury-charcoal)] pt-32 pb-24 text-white/80">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <Breadcrumbs items={breadcrumbs} client:idle />
+
+      <div class="mb-12 mt-6">
+        <span class="text-xs uppercase tracking-[0.25em] text-[var(--color-luxury-gold)] font-semibold block mb-3">
+          Statutory Compliance
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-serif text-[var(--color-luxury-pearl)] font-light mb-4">
+          Terms & Conditions
+        </h1>
+        <p class="text-xs text-white/50">
+          MahaRERA Project Registration No.: <strong class="text-[var(--color-luxury-gold)]">PR1260002501530</strong> • Applicable to all visitors and prospective buyers.
+        </p>
+      </div>
+
+      <div class="glass-panel p-8 sm:p-12 rounded-2xl border border-white/10 bg-black/40 space-y-8 text-sm sm:text-base leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">1. Nature of the Digital Information</h2>
+          <p>
+            The contents of <a href="https://www.krahejacorpvistas.com" class="text-[var(--color-luxury-gold)] underline">www.krahejacorpvistas.com</a> are intended purely for general informational presentation regarding <strong>K Raheja Vistas Mahalunge</strong>, developed by <strong>K Raheja Corp</strong>.
+          </p>
+          <p>
+            The imagery, renders, architectural visualizations, walkthroughs, elevations, and layout designs depicted on this portal are artist impressions and conceptual representations. Actual construction, elevation textures, fittings, and amenity layouts will adhere strictly to the sanctioned architectural plans approved by the planning authority and registered with Maharashtra Real Estate Regulatory Authority (MahaRERA).
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">2. MahaRERA Statutory Disclosure</h2>
+          <p>
+            The project <strong>K Raheja Vistas Mahalunge</strong> is registered with MahaRERA under Registration Number <strong>PR1260002501530</strong>.
+          </p>
+          <p>
+            Full project details, including sanctioned layouts, approvals, proforma agreements, phase-wise completion dates, and title deeds, are publicly verifiable on the official MahaRERA website: <a href="https://maharera.mahaonline.gov.in" target="_blank" rel="noopener noreferrer" class="text-[var(--color-luxury-gold)] underline">maharera.mahaonline.gov.in</a> under registered projects.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">3. No Binding Offer or Contract</h2>
+          <p>
+            Nothing published on this website constitutes a legally binding offer, formal invitation to treat, or contract of allotment between K Raheja Corp and the user. A valid purchase or legal right in any apartment or unit at K Raheja Vistas arises exclusively upon the formal execution and registration of an Agreement for Sale in accordance with the Real Estate (Regulation and Development) Act 2016 (RERA).
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">4. Intellectual Property Rights</h2>
+          <p>
+            All brand trademarks, trade dress, architectural blueprints, vector emblems, copywriting, photography, and code on this site are the intellectual property of K Raheja Corp. Unauthorized reproduction, scraping, mirroring, or distribution without prior written consent is strictly prohibited.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">5. Jurisdiction & Governing Law</h2>
+          <p>
+            Any disputes or claims arising out of or in connection with the access or use of this website shall be governed by the laws of India and shall be subject to the exclusive jurisdiction of the competent courts in Pune, Maharashtra.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">6. Contact & Sales Office</h2>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1 text-sm">
+            <p><strong>Site Experience Center:</strong> Baner Annexe, Mahalunge, Pune, Maharashtra 411045</p>
+            <p><strong>Official Enquiry Desk:</strong> <a href="tel:+917744009295" class="text-[var(--color-luxury-gold)]">+91 77440 09295</a></p>
+            <p><strong>Website:</strong> <a href="https://www.krahejacorpvistas.com" class="text-[var(--color-luxury-gold)]">www.krahejacorpvistas.com</a></p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</BaseLayout>

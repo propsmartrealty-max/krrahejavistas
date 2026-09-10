@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Privacy Policy', href: '/privacy-policy' }
+];
+
+const policySchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Privacy Policy | K Raheja Vistas Mahalunge",
+  "description": "Official privacy policy, data protection, and cookie compliance for K Raheja Vistas Mahalunge under the Digital Personal Data Protection Act (DPDP) 2023.",
+  "url": "https://www.krahejacorpvistas.com/privacy-policy",
+  "publisher": {
+    "@type": "Organization",
+    "name": "K Raheja Corp",
+    "url": "https://www.krahejacorpvistas.com"
+  }
+};
+---
+
+<BaseLayout
+  title="Privacy Policy | K Raheja Vistas Mahalunge"
+  description="Official Privacy Policy for K Raheja Vistas Mahalunge Pune by K Raheja Corp. Information collection, DPDP Act 2023 compliance, and communication policies."
+  canonical="https://www.krahejacorpvistas.com/privacy-policy"
+  schemas={[policySchema]}
+>
+  <div class="min-h-screen bg-[var(--color-luxury-charcoal)] pt-32 pb-24 text-white/80">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <Breadcrumbs items={breadcrumbs} client:idle />
+
+      <div class="mb-12 mt-6">
+        <span class="text-xs uppercase tracking-[0.25em] text-[var(--color-luxury-gold)] font-semibold block mb-3">
+          Legal & Compliance
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-serif text-[var(--color-luxury-pearl)] font-light mb-4">
+          Privacy Policy
+        </h1>
+        <p class="text-xs text-white/50">
+          Last Updated: September 2026 • In compliance with India's Digital Personal Data Protection (DPDP) Act 2023 and Information Technology Act 2000.
+        </p>
+      </div>
+
+      <div class="glass-panel p-8 sm:p-12 rounded-2xl border border-white/10 bg-black/40 space-y-8 text-sm sm:text-base leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">1. Introduction</h2>
+          <p>
+            Welcome to the official digital portal of <strong>K Raheja Vistas Mahalunge</strong> (“we”, “our”, or “us”), an ultra-luxury residential development by <strong>K Raheja Corp</strong> located at Baner Annexe, Mahalunge, Pune (MahaRERA Registration No. <strong>PR1260002501530</strong>).
+          </p>
+          <p>
+            We are committed to respecting and protecting the personal data and privacy of our website visitors, prospective homeowners, NRI investors, and channel partners. This Privacy Policy details how we collect, store, process, and safeguard your personal information when you visit <a href="https://www.krahejacorpvistas.com" class="text-[var(--color-luxury-gold)] underline">www.krahejacorpvistas.com</a> or interact with our authorized sales desk.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">2. Information We Collect</h2>
+          <p>We may collect information directly from you when you complete an enquiry form, request a brochure, schedule a site visit, or converse with our AI concierge or sales desk:</p>
+          <ul class="list-disc list-inside space-y-2 pl-2 text-white/70">
+            <li><strong>Identity and Contact Data:</strong> Full name, telephone/mobile number, email address, city/country of residence.</li>
+            <li><strong>Property Preferences:</strong> Desired configuration (2 BHK, 3 BHK, 4 BHK, Duplex, Penthouse), investment horizon, and budget parameters.</li>
+            <li><strong>Technical and Telemetry Data:</strong> IP address, device type, browser specifications, referral URLs, and pages visited, captured via Cloudflare edge analytics and Google Analytics for quality assurance.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">3. Purpose of Processing Your Personal Data</h2>
+          <p>Your data is processed strictly for legitimate business interests and sales facilitation:</p>
+          <ul class="list-disc list-inside space-y-2 pl-2 text-white/70">
+            <li>Transmitting requested brochures, floor plans, cost sheets, and official MahaRERA project documentation.</li>
+            <li>Facilitating phone consultations, virtual presentations, or guided site visits to our Mahalunge experiential center.</li>
+            <li>Addressing specific queries from Non-Resident Indians (NRIs) regarding FEMA regulations, taxation, and repatriation.</li>
+            <li>Enhancing website performance, edge delivery speed, and user experience.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">4. Data Sharing & Security Standards</h2>
+          <p>
+            We adhere to strict data non-disclosure standards. <strong>We do not sell, rent, or trade your personal information to any third-party marketing brokers.</strong> Your data is shared exclusively with our authorized project sales personnel, customer relationship managers, and certified technology infrastructure partners (such as Cloudflare and enterprise CRM systems) under strict confidentiality agreements.
+          </p>
+          <p>
+            All data in transit is encrypted using 256-bit TLS/SSL encryption. Edge access is governed by Cloudflare Web Application Firewall (WAF) and DDoS mitigation.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">5. Cookie Policy & Tracking Technologies</h2>
+          <p>
+            Our website utilizes essential functional cookies and privacy-preserving performance telemetry (Cloudflare Web Analytics) to guarantee sub-second page loads and seamless navigation. You can configure your browser settings to reject non-essential cookies at any time without compromising essential website access.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">6. Your Rights Under DPDP Act 2023</h2>
+          <p>
+            Under India's Digital Personal Data Protection Act 2023, you have the right to request access to the personal data we hold about you, request rectification of any inaccurate information, or withdraw your consent for promotional communications at any time.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-serif text-[var(--color-luxury-pearl)]">7. Grievance Redressal & Contact Desk</h2>
+          <p>
+            If you have any questions, feedback, or grievance regarding this Privacy Policy or the handling of your data, please contact our Sales and Compliance Concierge:
+          </p>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1 text-sm">
+            <p><strong>Project:</strong> K Raheja Vistas Mahalunge</p>
+            <p><strong>Site Address:</strong> Baner Annexe, Mahalunge, Pune, Maharashtra 411045</p>
+            <p><strong>Compliance Hotline:</strong> <a href="tel:+917744009295" class="text-[var(--color-luxury-gold)]">+91 77440 09295</a></p>
+            <p><strong>WhatsApp Support:</strong> <a href="https://wa.me/917744009295" target="_blank" rel="noopener noreferrer" class="text-[var(--color-luxury-gold)]">+91 77440 09295</a></p>
+            <p><strong>MahaRERA Registration:</strong> PR1260002501530</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</BaseLayout>

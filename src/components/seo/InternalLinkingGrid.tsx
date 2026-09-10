@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import seoDatabase from '@/data/seo-database.json';
+import { activeProgrammaticKeys } from '@/lib/seo/active-routes';
 
 const db: Record<string, { h1: string; category: string }> = seoDatabase;
 
@@ -20,14 +21,14 @@ export default function InternalLinkingGrid({ currentSlug }: { currentSlug: stri
 
   const pillarSlug = pillarMap[currentCategory];
 
-  // Strictly filter only pages within the exact same Silo
-  let siloSlugs = Object.keys(db).filter(
-    (s) => db[s].category === currentCategory && s !== currentSlug && s !== pillarSlug
+  // Strictly filter only active, built pages within the exact same Silo
+  let siloSlugs = activeProgrammaticKeys.filter(
+    (s) => db[s]?.category === currentCategory && s !== currentSlug && s !== pillarSlug
   );
 
-  // Fallback to random if not in a designated advanced silo
+  // Fallback to active programmatic keys if not in a designated advanced silo
   if (siloSlugs.length === 0) {
-    siloSlugs = Object.keys(db).filter(s => s !== currentSlug);
+    siloSlugs = activeProgrammaticKeys.filter(s => s !== currentSlug);
   }
 
   // Deterministic slice

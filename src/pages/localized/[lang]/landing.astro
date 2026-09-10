@@ -1,0 +1,154 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContactFormInline from '@/components/ui/ContactFormInline';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'mr' } },
+    { params: { lang: 'hi' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'en' | 'mr' | 'hi' };
+
+const dictionaries = {
+  en: {
+    title: "Premium Deck Residences at Baner Annex | K Raheja Vistas Mahalunge",
+    description: "Experience 7.5 acres of timeless luxury at Baner Annexe, Mahalunge by K Raheja Corp. 2, 3 & 4 BHK deck homes with 75% landscaped open greens. MahaRERA: PR1260002501530.",
+    heading: "Premium Deck Residences at Baner Annex",
+    subtitle: "The Last 7.5-Acre Masterpiece in West Pune.",
+    formTitle: "Download Master Brochure & Floor Plans",
+    formSubtitle: "Instant digital delivery via WhatsApp & Email.",
+    tagline: "Ultra-Luxury Living Redefined",
+    inLanguage: "en-IN"
+  },
+  mr: {
+    title: "बाणेर ॲनेक्स येथे प्रीमियम डेक रेसिडेन्सेस | के रहेजा व्हिस्टास म्हाळुंगे",
+    description: "के रहेजा कॉर्प प्रस्तुत बाणेर ॲनेक्स, म्हाळुंगे येथे ७.५ एकरचा निसर्गरम्य मास्टरपीस. २, ३ आणि ४ बीएचके लक्झरी डेक होम्स. महारेरा नोंदणी: PR1260002501530.",
+    heading: "बाणेर ॲनेक्स येथे प्रीमियम डेक रेसिडेन्सेस",
+    subtitle: "पश्चिम पुण्यातील ७.५ एकरचा अद्वितीय मास्टरपीस.",
+    formTitle: "माहितीपत्रक आणि फ्लोअर प्लॅन डाउनलोड करा",
+    formSubtitle: "व्हॉट्सॲप आणि ईमेलवर तात्काळ माहिती मिळवा.",
+    tagline: "अभिजात आणि वैभवसंपन्न जीवनशैली",
+    inLanguage: "mr-IN"
+  },
+  hi: {
+    title: "बानेर एनेक्स में प्रीमियम डेक रेसिडेंसीज | के रहेजा विस्टास महालुंगे",
+    description: "के रहेजा कॉर्प द्वारा बानेर एनेक्स, महालुंगे में 7.5 एकड़ का भव्य आवासीय प्रोजेक्ट। 2, 3 एवं 4 बीएचके अल्ट्रा-लक्जरी डेक होम्स। महारेरा: PR1260002501530.",
+    heading: "बानेर एनेक्स में प्रीमियम डेक रेसिडेंसीज",
+    subtitle: "वेस्ट पुणे में 7.5 एकड़ का सबसे प्रीमियम लैंडमार्क।",
+    formTitle: "ब्रोशर और फ्लोर प्लान डाउनलोड करें",
+    formSubtitle: "व्हाट्सएप और ईमेल पर तुरंत विवरण प्राप्त करें।",
+    tagline: "अति-विलासी जीवनशैली का नया ठिकाना",
+    inLanguage: "hi-IN"
+  }
+};
+
+const dict = dictionaries[lang] || dictionaries.en;
+const canonicalUrl = `https://www.krahejacorpvistas.com/localized/${lang}/landing`;
+
+const localizedSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": dict.title,
+  "description": dict.description,
+  "url": canonicalUrl,
+  "inLanguage": dict.inLanguage,
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "K Raheja Vistas Mahalunge",
+    "url": "https://www.krahejacorpvistas.com"
+  }
+};
+---
+
+<BaseLayout
+  title={dict.title}
+  description={dict.description}
+  canonical={canonicalUrl}
+  schemas={[localizedSchema]}
+>
+  <div class="min-h-screen bg-[var(--color-luxury-charcoal)] flex flex-col lg:flex-row pt-20">
+    
+    {/* Left Column: Visual Showcase & Selling Points */}
+    <div class="w-full lg:w-1/2 min-h-[50vh] lg:min-h-[calc(100vh-5rem)] relative overflow-hidden flex flex-col justify-between p-8 sm:p-12 lg:p-16 z-10">
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/assets/hero-masterpiece.jpg" 
+          alt="K Raheja Vistas Mahalunge — Masterpiece Elevation" 
+          class="w-full h-full object-cover opacity-50 mix-blend-overlay scale-105"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-luxury-charcoal)] via-black/70 to-black/80" />
+      </div>
+
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-luxury-gold)]/10 border border-[var(--color-luxury-gold)]/30 text-[var(--color-luxury-gold)] text-xs uppercase tracking-widest font-semibold mb-6">
+          <span>{dict.tagline}</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif text-[var(--color-luxury-pearl)] font-light leading-tight mb-4">
+          {dict.heading}
+        </h1>
+        <p class="text-xl sm:text-2xl text-[var(--color-luxury-gold)] font-light italic">
+          {dict.subtitle}
+        </p>
+      </div>
+
+      <div class="relative z-10 mt-12 space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="glass-panel p-4 rounded-xl border border-white/10 bg-black/40">
+            <span class="text-2xl sm:text-3xl font-serif text-[var(--color-luxury-gold)] block">7.5 Acres</span>
+            <span class="text-white/60 text-xs uppercase tracking-wider">Township Masterpiece</span>
+          </div>
+          <div class="glass-panel p-4 rounded-xl border border-white/10 bg-black/40">
+            <span class="text-2xl sm:text-3xl font-serif text-[var(--color-luxury-gold)] block">75%</span>
+            <span class="text-white/60 text-xs uppercase tracking-wider">Open Green Space</span>
+          </div>
+          <div class="glass-panel p-4 rounded-xl border border-white/10 bg-black/40">
+            <span class="text-2xl sm:text-3xl font-serif text-[var(--color-luxury-gold)] block">5 Mins</span>
+            <span class="text-white/60 text-xs uppercase tracking-wider">To Hinjewadi IT Park</span>
+          </div>
+          <div class="glass-panel p-4 rounded-xl border border-white/10 bg-black/40">
+            <span class="text-2xl sm:text-3xl font-serif text-[var(--color-luxury-gold)] block">PR1260002501530</span>
+            <span class="text-white/60 text-xs uppercase tracking-wider">MahaRERA Registered</span>
+          </div>
+        </div>
+
+        {/* Language Switcher Bar */}
+        <div class="flex items-center gap-3 pt-4 border-t border-white/10 text-xs text-white/60">
+          <span>भाषा / Language:</span>
+          <a href="/localized/en/landing" class={`hover:text-[var(--color-luxury-gold)] transition-colors ${lang === 'en' ? 'text-[var(--color-luxury-gold)] font-bold underline' : ''}`}>English</a>
+          <span>•</span>
+          <a href="/localized/mr/landing" class={`hover:text-[var(--color-luxury-gold)] transition-colors ${lang === 'mr' ? 'text-[var(--color-luxury-gold)] font-bold underline' : ''}`}>मराठी</a>
+          <span>•</span>
+          <a href="/localized/hi/landing" class={`hover:text-[var(--color-luxury-gold)] transition-colors ${lang === 'hi' ? 'text-[var(--color-luxury-gold)] font-bold underline' : ''}`}>हिन्दी</a>
+        </div>
+      </div>
+    </div>
+
+    {/* Right Column: Hard Conversion VIP Form */}
+    <div class="w-full lg:w-1/2 bg-[var(--color-luxury-pearl)] flex items-center justify-center p-6 sm:p-12 lg:p-16">
+      <div class="w-full max-w-lg bg-white p-8 sm:p-10 rounded-2xl shadow-2xl border border-gray-100">
+        <div class="mb-8 text-center">
+          <span class="text-xs uppercase tracking-[0.2em] text-[var(--color-luxury-gold)] font-bold block mb-2">
+            Priority VIP Desk
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-serif text-[var(--color-luxury-charcoal)] mb-2 font-medium">
+            {dict.formTitle}
+          </h2>
+          <p class="text-xs text-gray-500">
+            {dict.formSubtitle}
+          </p>
+        </div>
+
+        <ContactFormInline client:load />
+
+        <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-400">
+          <span>MahaRERA: PR1260002501530</span>
+          <span>100% Privacy Guaranteed</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>

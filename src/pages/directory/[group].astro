@@ -2,23 +2,22 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import seoDatabase from '@/data/seo-database.json';
+import { activeProgrammaticKeys } from '@/lib/seo/active-routes';
 
 export function getStaticPaths() {
   const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i));
   const groups = ['0-9', ...alphabet];
   
-  const allKeys = Object.keys(seoDatabase);
-  
   return groups.map((group) => {
-    const links = allKeys.filter((key) => {
+    const links = activeProgrammaticKeys.filter((key) => {
       if (group === '0-9') {
         return /^[0-9]/.test(key);
       }
-      return key.startsWith(group);
+      return key.toLowerCase().startsWith(group.toLowerCase());
     });
     return {
       params: { group },
-      props: { group, links: links.slice(0, 100), totalCount: links.length },
+      props: { group, links, totalCount: links.length },
     };
   });
 }

@@ -61,43 +61,8 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
   CDN-Cache-Control: max-age=2592000
 
-# Modular XML Sitemaps Matrix
-/sitemaps/*
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600, s-maxage=86400
-  CDN-Cache-Control: max-age=86400
-
+# Authoritative XML Sitemap
 /sitemap.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600, s-maxage=86400
-  CDN-Cache-Control: max-age=86400
-
-/sitemap-index.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600, s-maxage=86400
-  CDN-Cache-Control: max-age=86400
-
-/sitemap-core.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600, s-maxage=86400
-  CDN-Cache-Control: max-age=86400
-
-/sitemap-configurations.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600, s-maxage=86400
-  CDN-Cache-Control: max-age=86400
-
-/sitemap-locations.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600, s-maxage=86400
-  CDN-Cache-Control: max-age=86400
-
-/sitemap-comparisons.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600, s-maxage=86400
-  CDN-Cache-Control: max-age=86400
-
-/sitemap-nri.xml
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600, s-maxage=86400
   CDN-Cache-Control: max-age=86400

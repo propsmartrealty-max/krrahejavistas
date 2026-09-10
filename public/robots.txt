@@ -156,8 +156,6 @@ Allow: /favicon.svg
 Allow: /favicon.ico
 Allow: /manifest.json
 Allow: /sitemap.xml
-Allow: /sitemap-index.xml
-Allow: /sitemaps/*
 Allow: /robots.txt
 Allow: /llms.txt
 Allow: /llms-full.txt
@@ -186,4 +184,3 @@ Disallow: /xmlrpc.php
 Disallow: /phpmyadmin/
 
 Sitemap: https://www.krahejacorpvistas.com/sitemap.xml
-Sitemap: https://www.krahejacorpvistas.com/sitemap-index.xml

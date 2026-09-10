@@ -78,6 +78,8 @@ export default function Footer() {
           <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
             <p>&copy; {new Date().getFullYear()} K Raheja Vistas Mahalunge by K Raheja Corp. All Rights Reserved.</p>
             <div className="flex flex-wrap gap-4 mt-4 md:mt-0">
+              <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white">Terms of Use</Link>
               <Link href="/directory" className="hover:text-white">Real Estate Directory</Link>
               <Link href="/project/masterplan" className="hover:text-white">Masterplan</Link>
               <Link href="/project/amenities" className="hover:text-white">Amenities</Link>

@@ -5,25 +5,12 @@ import DynamicGallery from '@/components/ui/DynamicGallery';
 import AeoFaqBlock from '@/components/seo/AeoFaqBlock';
 import InternalLinkingGrid from '@/components/seo/InternalLinkingGrid';
 import { synthesizeSeoContent } from '@/lib/seo/content-synthesizer';
-import seoDatabase from '@/data/seo-database.json';
+import { activeProgrammaticKeys, getActivePageData } from '@/lib/seo/active-routes';
 
 export function getStaticPaths() {
-  const db = seoDatabase as Record<string, { title: string; description: string; h1: string; category: string; slug: string; content?: string | null }>;
-  const allKeys = Object.keys(db);
-  
-  // Prioritize high-intent clusters: brand, comparison, blog, configuration, luxury, Pune_Real_Estate
-  const priorityKeys = allKeys.filter(k => {
-    const cat = db[k]?.category;
-    return cat === 'brand' || cat === 'comparison' || cat === 'blog' || cat === 'luxury' || cat === 'configuration' || cat === 'Pune_Real_Estate';
-  });
-  
-  // Add first 100 location & investment to cover top organic searches
-  const otherKeys = allKeys.filter(k => !priorityKeys.includes(k)).slice(0, 100);
-  const selectedKeys = Array.from(new Set([...priorityKeys, ...otherKeys]));
-
-  return selectedKeys.map((slugKey) => ({
+  return activeProgrammaticKeys.map((slugKey) => ({
     params: { slug: slugKey },
-    props: { data: db[slugKey], slugKey },
+    props: { data: getActivePageData(slugKey)!, slugKey },
   }));
 }
 
