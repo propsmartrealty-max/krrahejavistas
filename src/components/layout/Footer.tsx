@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from '@/components/compat/NextLink';
+import Image from '@/components/compat/NextImage';
 import KeywordMesh from '@/components/seo/KeywordMesh';
 
 export default function Footer() {
