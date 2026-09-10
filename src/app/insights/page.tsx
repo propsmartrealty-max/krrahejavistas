@@ -1,7 +1,7 @@
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from '@/components/compat/NextLink';
+import Image from '@/components/compat/NextImage';
 
 export const metadata: Metadata = {
   title: 'Market Insights & Research | K Raheja Vistas Mahalunge Pune',

@@ -1,7 +1,6 @@
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { Metadata } from 'next';
-import Link from 'next/link';
-import Script from 'next/script';
+import Link from '@/components/compat/NextLink';
 
 export const metadata: Metadata = {
   title: 'K Raheja Vistas — Visual Stories | Mahalunge Baner Pune',
@@ -73,7 +72,7 @@ export default function StoriesPage() {
 
   return (
     <div className="min-h-screen bg-[var(--color-luxury-charcoal)] pt-32 pb-20 px-6">
-      <Script id="web-stories-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webStoriesSchema) }} />
+      <script id="web-stories-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webStoriesSchema) }} />
 
       <div className="container mx-auto max-w-6xl">
         <Breadcrumbs items={breadcrumbs} />
